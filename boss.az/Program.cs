@@ -14,7 +14,7 @@ namespace boss.az
         {
             UTF8Encoding utf8 = new UTF8Encoding();
             Worker w1 = new Worker("Nebi", "Nebili", 18, "Male", "nnabili035@gmail.com","Azerbaycan123");
-            Worker w2 = new Worker("Kamal", "Eliyev", 15, "Male", "kamalaliyev7@gmail.com", "200440880");
+            Worker w2 = new Worker("Kamal", "Eliyev", 15, "Male", "kamalaliyev7@gmail.com", "Salam qaqa");
             Announcement announcement = new Announcement("Sumqayət","18-25", new DateTime(2020, 09, 21), new DateTime(2020, 10, 21), 800, "1 ilden 3 ile qeder", "Amiraslan", "emiraslaneliyev45@gmail.com","+994557134655");
             Database db = new Database{
                  Workers=new List<Worker> {w1,w2}

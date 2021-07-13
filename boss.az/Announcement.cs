@@ -77,7 +77,7 @@ namespace boss.az
         }
         public override string ToString()
         {
-            return $"City:{_city}Age: {_age}";
+            return $"City:{_city}Age: {_age} TE";
         }
 
 
