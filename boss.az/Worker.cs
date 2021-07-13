@@ -9,7 +9,7 @@ namespace boss.az
     
     class Worker:Person
     {
-        public Worker(string name, string surname, int age, string gender, string email, string password) : base(name, surname, age, gender, email, password)
+        public Worker(string fullname, string username, int age,  string email, string password) : base(fullname, username, age,  email, password)
         {
 
         }

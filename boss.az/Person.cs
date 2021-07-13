@@ -8,17 +8,17 @@ namespace boss.az
 {
     class Person
     {
-        private string _name;
-        public string Name
+        private string _fullName;
+        public string FullName
         {
-            get { return _name; }
-            set { _name = value; }
+            get { return _fullName; }
+            set { _fullName = value; }
         }
-        private string _surname;
-        public string Surname
+        private string _username;
+        public string USerName
         {
-            get { return _surname; }
-            set { _surname = value; }
+            get { return _username; }
+            set { _username = value; }
         }
         private string _email;
         public string Email
@@ -38,24 +38,17 @@ namespace boss.az
             get { return _age; }
             set { _age = value; }
         }
-        private string _gender;
-        public string Gender
+        public Person(string fullname, string username, int age, string email, string password)
         {
-            get { return _gender; }
-            set { _gender = value; }
-        }
-        public Person(string name, string surname, int age, string gender, string email, string password)
-        {
-            _name = name;
-            _surname = surname;
+            _fullName = fullname;
+            _username = username;
             _age = age;
-            _gender = gender;
             _email = email;
             _password = password;
         }
         public override string ToString()
         {
-            return $"Name: {_name}\nSurname:{_surname}\nAge: {_age}\nGender: {_gender}\nEmail: {_email}\nPassword: {_password}\n";
+            return $" Full Name: {_fullName}\n Username:{_username}\nAge: {_age}\nEmail: {_email}\nPassword: {_password}\n";
         }
     }
 }

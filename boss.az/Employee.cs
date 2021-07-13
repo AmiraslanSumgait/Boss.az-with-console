@@ -15,7 +15,7 @@ namespace boss.az
     {
         public List<Announcement> announcements { get; set; } = new List<Announcement>();
 
-        public Employee(string name, string surname, int age, string gender,string email,string password):base(name,surname,age,gender,email,password)
+        public Employee(string name, string surname, int age,string email,string password):base(name,surname,age,email,password)
         {
            
         }
