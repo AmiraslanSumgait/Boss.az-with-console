@@ -20,6 +20,18 @@ namespace boss.az
             get { return _surname; }
             set { _surname = value; }
         }
+        private string _email;
+        public string Email
+        {
+            get { return _email; }
+            set { _email = value; }
+        }
+        private string _password;
+        public string Password
+        {
+            get { return _password; }
+            set { _password = value; }
+        }
         private int _age;
         public int Age
         {
@@ -32,16 +44,18 @@ namespace boss.az
             get { return _gender; }
             set { _gender = value; }
         }
-        public Person(string name, string surname, int age, string gender)
+        public Person(string name, string surname, int age, string gender, string email, string password)
         {
             _name = name;
             _surname = surname;
             _age = age;
             _gender = gender;
+            _email = email;
+            _password = password;
         }
         public override string ToString()
         {
-            return $"Name: {_name}\nSurname:{_surname}\nAge: {_age}\nGender: {Gender}\n";
+            return $"Name: {_name}\nSurname:{_surname}\nAge: {_age}\nGender: {_gender}\nEmail: {_email}\nPassword: {_password}\n";
         }
     }
 }

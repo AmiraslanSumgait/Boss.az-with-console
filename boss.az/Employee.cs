@@ -8,32 +8,36 @@ namespace boss.az
 {
     interface IEmploye
     {
-        public void AddAnnoucment();
+        public void AddAnnoucment(Announcement announcement);
         
     }
     class Employee : Person, IEmploye
     {
-        public List<Announcement> announcements { get; set; }
-        private string _email;
-        public string Email
+        public List<Announcement> announcements { get; set; } = new List<Announcement>();
+
+        public Employee(string name, string surname, int age, string gender,string email,string password):base(name,surname,age,gender,email,password)
         {
-            get { return _email; }
-            set { _email = value; }
+           
         }
-        private string _password;
-        public string Password
+        public void AddAnnoucment(Announcement announcement)
+        {           
+            announcements.Add(announcement);
+        }
+        public void PrintAnnoucments()
         {
-            get { return _password; }
-            set { _password = value; }
+            int count = 0;
+            foreach (var annoucment in announcements)
+            {
+                ++count;
+                if (count % 2 == 0) { Console.ForegroundColor = ConsoleColor.Green; }
+                else Console.ForegroundColor = ConsoleColor.Blue;
+                Console.WriteLine($"------------Annoucment {count}------------");
+                Console.WriteLine(annoucment);
+            }
         }
-         public Employee(string name, string surname, int age, string gender,string email,string password):base(name,surname,age,gender)
-         {
-            _email = email;
-            _password = password;
-        }
-        public void AddAnnoucment()
+        public override string ToString()
         {
-            throw new NotImplementedException();
+            return base.ToString();
         }
     }
 }

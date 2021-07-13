@@ -8,6 +8,8 @@ namespace boss.az
 {
     class Announcement
     {
+        public  int ThisId { get; set; }
+        public static int Id { get; set; }
         private string _city;
         public string City
         {
@@ -20,6 +22,13 @@ namespace boss.az
             get { return _age; }
             set { _age = value; }
         }
+        private string _subject;
+        public string Subject
+        {
+            get { return _subject; }
+            set { _subject = value; }
+        }
+
         private DateTime _annoucmentTime;
         public DateTime AnnoucmentTime
         {
@@ -63,8 +72,10 @@ namespace boss.az
             get { return _phoneNumber; }
             set { _phoneNumber = value; }
         }
-        public Announcement(string city, string age, DateTime annoucmentTime,  DateTime annoucmentEndTime, double salary,string workExperience, string relevantPerson,  string email, string phoneNumber)
+        public Announcement(string subject,string city, string age, DateTime annoucmentTime,  DateTime annoucmentEndTime, double salary,string workExperience, string relevantPerson,  string email, string phoneNumber)
         {
+            _subject = subject;
+            ThisId = ++Id;
             _city = city;
             _age = age;
             _annoucmentTime = annoucmentTime;
@@ -77,7 +88,8 @@ namespace boss.az
         }
         public override string ToString()
         {
-            return $"City:{_city}Age: {_age} TE";
+            return $"ID:{ThisId}\nCity:{_city}\nAge: {_age}\nAnnoucmentTime:{_annoucmentTime}\nAnnoucmentEndTime: {_annoucmentEndTime}\n" +
+                $"Salary:{_salary}\nWorkExperience: {_workExperience}\nRelevantPerson: {_relevantPerson}\nEmail: {_workExperience}\nPhoneNumber: {_phoneNumber}";
         }
 
 

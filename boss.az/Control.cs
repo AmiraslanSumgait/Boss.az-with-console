@@ -8,10 +8,10 @@ namespace boss.az
 {
     public class ConsoleHelper
     {
-        public static int MultipleChoice(params string[] options)
+        public static int MultipleChoice(int startx, int starty,params string[] options)
         {
-            const int startX = 5;
-            const int startY = 1;
+             int startX = startx;
+             int startY = starty;
             const int optionsPerLine = 1;
             const int spacingPerLine = 14;
 

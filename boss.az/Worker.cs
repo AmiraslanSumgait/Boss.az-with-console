@@ -9,27 +9,13 @@ namespace boss.az
     
     class Worker:Person
     {
-        private string _email;
-        public string Email 
+        public Worker(string name, string surname, int age, string gender, string email, string password) : base(name, surname, age, gender, email, password)
         {
-            get { return _email; }
-            set { _email = value; }
-        }
-        private string _password;
-        public string Password
-        {
-            get { return _password; }
-            set { _password = value; }
-        }
-        public Worker(string name, string surname, int age, string gender,string email,string password):base( name,  surname,  age,  gender)
-        {
-            _email = email;
-            _password = password;
+
         }
         public override string ToString()
-        {
-             
-            return base.ToString()+$"Email: {_email}\nPassword: {_password}";
+        {            
+            return base.ToString();
         }
     }
 }

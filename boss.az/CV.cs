@@ -44,10 +44,14 @@ namespace boss.az
             get { return _cvEndTime; }
             set { _cvEndTime = value; }
         }
-        public CV()
+        public CV(string name, int age, string city, string gender, DateTime cvTime, DateTime cvEndTime)
         {
-
+            _name = name;
+            _age = age;
+            _city = city;
+            _gender = gender;
+            _cvTime = cvTime;
+            _cvEndTime = cvEndTime;
         }
-
     }
 }
