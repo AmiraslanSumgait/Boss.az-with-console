@@ -14,9 +14,7 @@ namespace boss.az
         {
             Name = name;
             Id = id;
-        }
-
-      
+        }     
     }
   
 }

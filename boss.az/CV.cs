@@ -8,6 +8,10 @@ namespace boss.az
 {
     class CV
     {
+        public int ThisId { get; set; }
+        public static int Id { get; set; } = 100;
+        public int CategoryId { get; set; }
+        public string WorkName { get; set; }
         private string _name;
         private int _age;
         private string _city;
@@ -44,14 +48,20 @@ namespace boss.az
             get { return _cvEndTime; }
             set { _cvEndTime = value; }
         }
-        public CV(string name, int age, string city, string gender, DateTime cvTime, DateTime cvEndTime)
+        public string Skills { get; set; }
+        public string Experience { get; set; }
+        public CV(int categoryid,string workname,string name, int age, string city,  DateTime cvTime, DateTime cvEndTime,string skills,string experience)
         {
+            ThisId = ++Id;
+            CategoryId = categoryid;
+            WorkName = workname;
             _name = name;
             _age = age;
             _city = city;
-            _gender = gender;
             _cvTime = cvTime;
             _cvEndTime = cvEndTime;
+            Skills = skills;
+            Experience = experience;
         }
     }
 }

@@ -48,7 +48,7 @@ namespace boss.az
         }
         public override string ToString()
         {
-            return $" Full Name: {_fullName}\n Username:{_username}\nAge: {_age}\nEmail: {_email}\nPassword: {_password}\n";
+            return $"Full Name: {_fullName}\nUsername:{_username}\nAge: {_age}\nEmail: {_email}\nPassword: {_password}\n";
         }
     }
 }

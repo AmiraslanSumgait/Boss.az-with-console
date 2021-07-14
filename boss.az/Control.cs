@@ -8,8 +8,9 @@ namespace boss.az
 {
     public class ConsoleHelper
     {
-        public static int MultipleChoice(int startx, int starty,params string[] options)
+        public static int MultipleChoice(int startx, int starty,bool consoleClear, params string[] options)
         {
+            
              int startX = startx;
              int startY = starty;
             const int optionsPerLine = 1;
@@ -22,7 +23,7 @@ namespace boss.az
             Console.CursorVisible = false;
             do
             {
-                Console.Clear();
+                if (consoleClear == true) Console.Clear();
 
                 for (int i = 0; i < options.Length; i++)
                 {

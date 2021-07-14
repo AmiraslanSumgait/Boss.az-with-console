@@ -6,9 +6,13 @@ using System.Threading.Tasks;
 
 namespace boss.az
 {
-    
-    class Worker:Person
+    interface IWorker
     {
+        public void AddCv(CV cv);
+    }
+    class Worker:Person,IWorker
+    {
+        public List<CV> Cvs { get; set; } = new List<CV>();
         public Worker(string fullname, string username, int age,  string email, string password) : base(fullname, username, age,  email, password)
         {
 
@@ -16,6 +20,11 @@ namespace boss.az
         public override string ToString()
         {            
             return base.ToString();
+        }
+
+        public void AddCv(CV cv)
+        {
+            Cvs.Add(cv);
         }
     }
 }

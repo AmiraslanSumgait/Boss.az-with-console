@@ -11,6 +11,7 @@ namespace boss.az
     {
         public List<Worker> Workers { get; set; }
         public List<Employee> Employees { get; set; }
+        public List<Category> Categories { get; set; }
         public bool IsValidEmail(string email)
         {
             // Return true if strIn is in valid e-mail format.
@@ -62,6 +63,22 @@ namespace boss.az
             Console.SetCursorPosition(0, Console.CursorTop - 1);
             Console.Write(new string(' ', Console.BufferWidth));
             Console.SetCursorPosition(0, Console.CursorTop - 1);
+        }
+        public  void ClearCurrentConsoleLine()
+        {
+            int currentLineCursor = Console.CursorTop;
+            Console.SetCursorPosition(0, Console.CursorTop);
+            Console.Write(new string(' ', Console.WindowWidth));
+            Console.SetCursorPosition(0, currentLineCursor);
+        }
+        public  void ClearLine(int lines = 1)
+        {
+            for (int i = 1; i <= lines; i++)
+            {
+                Console.SetCursorPosition(0, Console.CursorTop - 1);
+                Console.Write(new string(' ', Console.WindowWidth));
+                Console.SetCursorPosition(0, Console.CursorTop - 1);
+            }
         }
     }
 }

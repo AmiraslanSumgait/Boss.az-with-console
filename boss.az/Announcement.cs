@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace boss.az
 {
     class Announcement
-    {
+    { 
         public  int ThisId { get; set; }
         public static int Id { get; set; }
         private string _city;
