@@ -15,7 +15,6 @@ namespace boss.az
         private string _name;
         private int _age;
         private string _city;
-        private string _gender;
         private DateTime _cvTime;
         private DateTime _cvEndTime;  
         public string Name
@@ -32,11 +31,6 @@ namespace boss.az
         {
             get { return _city; }
             set { _city = value; }
-        }
-        public string Gender
-        {
-            get { return _gender; }
-            set { _gender = value; }
         }
         public DateTime CvTime
         {
@@ -62,6 +56,10 @@ namespace boss.az
             _cvEndTime = cvEndTime;
             Skills = skills;
             Experience = experience;
+        }
+        public override string ToString()
+        {
+            return $"Id: {ThisId}\nCategory Id:{CategoryId}\nAge: {_age}\nJob: {WorkName}\nName: {_name}\nCity: {_city}\nCv Share Time: {CvTime}\nCv End Time: {CvEndTime}\nSkills: {Skills}\nExperience: {Experience}";
         }
     }
 }

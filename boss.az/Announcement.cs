@@ -91,13 +91,5 @@ namespace boss.az
             return $"ID:{ThisId}\nCity:{_city}\nAge: {_age}\nAnnoucmentTime:{_annoucmentTime}\nAnnoucmentEndTime: {_annoucmentEndTime}\n" +
                 $"Salary:{_salary}\nWorkExperience: {_workExperience}\nRelevantPerson: {_relevantPerson}\nEmail: {_workExperience}\nPhoneNumber: {_phoneNumber}";
         }
-
-
-
-
-
-
-
-
     }
 }

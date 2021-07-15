@@ -26,5 +26,32 @@ namespace boss.az
         {
             Cvs.Add(cv);
         }
+        public void DeleteCv(int id)
+        {
+            foreach (var cv in Cvs)
+            {
+                if (cv.ThisId == id)
+                {
+                    Cvs.Remove(cv);
+                }
+            }
+        }
+        public void PrintCvs()
+        {
+            int count = 0;
+            foreach (var cv in Cvs)
+            {
+                ++count;
+                if (count % 2 == 0) { Console.ForegroundColor = ConsoleColor.Green; }
+                else Console.ForegroundColor = ConsoleColor.Blue;
+                Console.WriteLine($"------------Cv {count}------------");
+                Console.WriteLine(cv);
+            }
+        }
+        public bool IsListEmpty(List<CV> cvs)
+        {
+            if (cvs.Count == 0) return true;
+            else return false;
+        }
     }
 }
