@@ -22,11 +22,12 @@ namespace boss.az
             Category category4 = new Category("Economy", 4);
             Category category5 = new Category("Marketing / Media / PR", 5);
             Category category6 = new Category("Human Resources / Staff Management ", 6);
-            Announcement announcement1 = new Announcement("React developer", "Sumgait", "18-25", new DateTime(2020, 09, 21), new DateTime(2020, 10, 21), 800, "1 to 3 years", "Amiraslan", "emiraslaneliyev45@gmail.com", "+994557134655");
-            Announcement announcement2 = new Announcement("Php developer", "Baku", "20-40", new DateTime(2021, 02, 10), new DateTime(2020, 03, 10), 1300, "More than 1 year", "Kenan", "Kenan23@gmail.com", "+994558557498");
-            Announcement announcement3 = new Announcement("UI/UX Designer", "Ganja", "25-40", new DateTime(2019, 03, 5), new DateTime(2019, 04, 10), 800, "More than 3 year", "Nebi", "nnabili@gmail.com", "+994557135755");
-            Announcement announcement4 = new Announcement("Graphic Designer", "Qabala", "20-30", new DateTime(2021, 10, 21, 23, 30, 40), new DateTime(2020, 11, 21), 800, "More than 2 year", "Burak", "burakaktas@gmail.com", "+9043239430");
-            Announcement announcement5 = new Announcement("Administrative assistant", "Ganja", "20-30", new DateTime(2021, 10, 21, 23, 30, 40), new DateTime(2020, 11, 21), 800, "More than 2 year", "Burak", "burakaktas@gmail.com", "+9043239430");
+            
+            Announcement announcement1 = new Announcement(1,"React developer", "Sumgait", "18-25", new DateTime(2020, 09, 21), new DateTime(2020, 10, 21), 800, "1 to 3 years", "Amiraslan", "emiraslaneliyev45@gmail.com", "+994557134655");
+            Announcement announcement2 = new Announcement(1,"Php developer", "Baku", "20-40", new DateTime(2021, 02, 10), new DateTime(2020, 03, 10), 1300, "More than 1 year", "Kenan", "Kenan23@gmail.com", "+994558557498");
+            Announcement announcement3 = new Announcement(2,"UI/UX Designer", "Ganja", "25-40", new DateTime(2019, 03, 5), new DateTime(2019, 04, 10), 800, "More than 3 year", "Nebi", "nnabili@gmail.com", "+994557135755");
+            Announcement announcement4 = new Announcement(2,"Graphic Designer", "Qabala", "20-30", new DateTime(2021, 10, 21, 23, 30, 40), new DateTime(2020, 11, 21), 800, "More than 2 year", "Burak", "burakaktas@gmail.com", "+9043239430");
+            Announcement announcement5 = new Announcement(5,"Administrative assistant", "Ganja", "20-30", new DateTime(2021, 10, 21, 23, 30, 40), new DateTime(2020, 11, 21), 800, "More than 2 year", "Burak", "burakaktas@gmail.com", "+9043239430");
 
             CV cv1 = new CV(1, "Node.js + Java Senior backend engineer", "Nebi", 18, "Sumgait",  new DateTime(2021, 10, 21, 23, 30, 00), new DateTime(2021, 11, 21, 23, 30, 00), "Java,Node.js", "More than 2 year");
             CV cv2 = new CV(2, "Product designer", "Akif", 20, "Ganja",  new DateTime(2021, 8, 22, 22, 00, 10), new DateTime(2021, 9, 22, 23, 30, 00), "A high degree of technical knowledge balanced with creative ability and a hands-on approach.", "More than 1 year");
@@ -51,7 +52,7 @@ namespace boss.az
             {
                 Workers = new List<Worker> { w1, w2 },
                 Employees = new List<Employee> { emp1, emp2},
-                Categories = new List<Category> { category1, category2 }
+                Categories = new List<Category> { category1, category2,category3,category4,category5,category6 }
             };
         FirstPart:
             int choise1 = ConsoleHelper.MultipleChoice(44, 9,true, 1, "Worker", "Employee");
@@ -365,14 +366,39 @@ namespace boss.az
                                             Console.Clear();
                                             Console.SetCursorPosition(38, 1);
                                             Console.ForegroundColor = ConsoleColor.DarkGreen;
-                                            Console.WriteLine("--------CITY--------");
-                                            int choise7 = ConsoleHelper.MultipleChoice(36, 9, false, 2, "Ganja","Sumgait");
+                                            Console.WriteLine("--------Category--------");
+                                            int choise7 = ConsoleHelper.MultipleChoice(36, 9, false, 2,"Software developer","Web/Graphic design","It/Telecommunications", "Economy", "Marketing / Media / PR", "Human Resources / Staff Management");
+                                          
                                             switch (choise7)
                                             {
                                                 case 0:
-                                                    Console.WriteLine("ca");
+                                                    foreach (var employee in db.Employees)
+                                                    {
+                                                        Database.FilitrAnnoucments = employee.announcements.FindAll(a => a.CategoryId == 1);
+                                                        foreach (var item in Database.FilitrAnnoucments)
+                                                        {
+                                                            Console.WriteLine(item);
+                                                        }
+                                                        Thread.Sleep(4000);
+                                                    }
                                                     break;
                                             }
+                                            int choise8 = ConsoleHelper.MultipleChoice(36, 9, true, 2, "Sumgait", "Ganja", "Baku", "Lankaran", "Shaki", "Quba");
+                                            switch (choise8)
+                                            {
+                                                case 0:
+                                                    foreach (var item in Database.FilitrAnnoucments)
+                                                    {
+                                                        Console.WriteLine(item);
+                                                    }
+                                                    Database.FilitrAnnoucments = Database.FilitrAnnoucments.FindAll(a => a.Age =="18-25" );
+                                                   
+                                                    Thread.Sleep(10000);
+
+
+                                                    break;
+                                            }
+                                            
                                         }
                                         else if (choise6 == 1)
                                         {
