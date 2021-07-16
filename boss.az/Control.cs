@@ -8,13 +8,13 @@ namespace boss.az
 {
     public class ConsoleHelper
     {
-        public static int MultipleChoice(int startx, int starty,bool consoleClear, params string[] options)
+        public static int MultipleChoice(int startx, int starty,bool consoleClear,int optionsperline, params string[] options)
         {
             
-             int startX = startx;
-             int startY = starty;
-            const int optionsPerLine = 1;
-            const int spacingPerLine = 14;
+            int startX = startx;
+            int startY = starty;
+             int optionsPerLine = optionsperline;
+            const int spacingPerLine = 25;
 
             int currentSelection = 0;
 
@@ -23,7 +23,9 @@ namespace boss.az
             Console.CursorVisible = false;
             do
             {
-                if (consoleClear == true) Console.Clear();
+                if (consoleClear) {
+                    Console.Clear(); 
+                }
 
                 for (int i = 0; i < options.Length; i++)
                 {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace boss.az
 {
-    class Person
+    abstract class Person
     {
         private string _fullName;
         public string FullName
