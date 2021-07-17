@@ -9,6 +9,7 @@ namespace boss.az
 {
      class Helper
     {
+        public static int Checker { get; set; }
         public static CV CvObject(int categoryId)
         {
             Console.Clear();

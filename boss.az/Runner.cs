@@ -23,17 +23,21 @@ namespace boss.az
             Category category5 = new Category("Marketing / Media / PR", 5);
             Category category6 = new Category("Human Resources / Staff Management ", 6);
             
-            Announcement announcement1 = new Announcement(1,"React developer", "Sumgait", "18-25", new DateTime(2020, 09, 21), new DateTime(2020, 10, 21), 800, "1 to 3 years", "Amiraslan", "emiraslaneliyev45@gmail.com", "+994557134655");
-            Announcement announcement2 = new Announcement(1,"Php developer", "Baku", "20-40", new DateTime(2021, 02, 10), new DateTime(2020, 03, 10), 1300, "More than 1 year", "Kenan", "Kenan23@gmail.com", "+994558557498");
-            Announcement announcement3 = new Announcement(2,"UI/UX Designer", "Ganja", "25-40", new DateTime(2019, 03, 5), new DateTime(2019, 04, 10), 800, "More than 3 year", "Nebi", "nnabili@gmail.com", "+994557135755");
-            Announcement announcement4 = new Announcement(2,"Graphic Designer", "Qabala", "20-30", new DateTime(2021, 10, 21, 23, 30, 40), new DateTime(2020, 11, 21), 800, "More than 2 year", "Burak", "burakaktas@gmail.com", "+9043239430");
-            Announcement announcement5 = new Announcement(5,"Administrative assistant", "Ganja", "20-30", new DateTime(2021, 10, 21, 23, 30, 40), new DateTime(2020, 11, 21), 800, "More than 2 year", "Burak", "burakaktas@gmail.com", "+9043239430");
-
+            Announcement announcement1 = new Announcement(1,"React developer", "Sumgait", "18-25", new DateTime(2020, 09, 21), new DateTime(2020, 10, 21), 900, "1 to 3 years", "Amiraslan", "emiraslaneliyev45@gmail.com", "+994557134655");
+            Announcement announcement2 = new Announcement(1,"Php developer", "Baku", "20-40", new DateTime(2021, 02, 10), new DateTime(2020, 03, 10), 1500, "More than 1 year", "Kenan", "Kenan23@gmail.com", "+994558557498");
+            Announcement announcement3 = new Announcement(2,"UI/UX Designer", "Ganja", "25-40", new DateTime(2019, 03, 5), new DateTime(2019, 04, 10), 2100, "More than 3 year", "Nebi", "nnabili@gmail.com", "+994557135755");
+            Announcement announcement4 = new Announcement(2,"Graphic Designer", "Qabala", "20-30", new DateTime(2021, 10, 21, 23, 30, 40), new DateTime(2020, 11, 21), 3100, "More than 2 year", "Burak", "burakaktas@gmail.com", "+9043239430");
+            Announcement announcement5 = new Announcement(5,"Administrative assistant", "Ganja", "20-30", new DateTime(2021, 10, 21, 23, 30, 40), new DateTime(2020, 11, 21), 3500, "More than 2 year", "Burak", "burakaktas@gmail.com", "+9043239430");
+            Database.FilitrAnnoucments.Add(announcement5);
+            Database.FilitrAnnoucments.Add(announcement4);
+            Database.FilitrAnnoucments.Add(announcement3);
+            Database.FilitrAnnoucments.Add(announcement2);
+            Database.FilitrAnnoucments.Add(announcement1);
             CV cv1 = new CV(1, "Node.js + Java Senior backend engineer", "Nebi", 18, "Sumgait",  new DateTime(2021, 10, 21, 23, 30, 00), new DateTime(2021, 11, 21, 23, 30, 00), "Java,Node.js", "More than 2 year");
             CV cv2 = new CV(2, "Product designer", "Akif", 20, "Ganja",  new DateTime(2021, 8, 22, 22, 00, 10), new DateTime(2021, 9, 22, 23, 30, 00), "A high degree of technical knowledge balanced with creative ability and a hands-on approach.", "More than 1 year");
             CV cv3 = new CV(3, "Digital & Web Coordinator", "Ramiz", 24, "Baku",  new DateTime(2021, 12, 19, 19, 00, 00), new DateTime(2022, 01, 21, 23, 30, 00), "Able to deliver quality results under time constraints in a fast-paced environment.", "Minimum 2 year");
             CV cv4 = new CV(4, "Junior Relationship Manager", "Samir", 18, "Lankaran",  new DateTime(2021, 10, 21, 23, 30, 00), new DateTime(2021, 11, 21, 23, 30, 00), "Able to work with key stakeholders to a high level", "Minimum 1.5 year");
-            CV cv5 = new CV(5, "English Copywriter UX/UI", "Samir", 18, "Shaki",  new DateTime(2021, 10, 21, 23, 30, 00), new DateTime(2021, 11, 21, 23, 30, 00), "Creating, writing and reviewing varied content in English for Swissquote?s web interfaces, particularly its applications.", "Minimum 1.5 year");
+            CV cv5 = new CV(5, "English Copywriter UX/UI", "Samir", 18, "Shaki",  new DateTime(2021, 10, 21, 23, 30, 00), new DateTime(2021, 11, 21, 23, 30, 00), "Creating, writing and reviewing varied content in English for Swissquotes web interfaces, particularly its applications.", "Minimum 1.5 year");
             CV cv6 = new CV(6, "HR Intern", "Rasim", 32, "Quba",  new DateTime(2021, 10, 21, 23, 30, 00), new DateTime(2021, 11, 21, 23, 30, 00), "*Support the employee lifecycle through administrative tasks (contracts, addendums,…)\n*Prepare the onboarding of new joiners", "Minimum 1.5 year");
             w1.AddCv(cv1);
             w1.AddCv(cv2);
@@ -363,41 +367,122 @@ namespace boss.az
                                         int choise6 = ConsoleHelper.MultipleChoice(50, 9, true, 2, "Advanced Search", "All annoucments");
                                         if (choise6 == 0)
                                         {
+                                            filitroptions:
                                             Console.Clear();
                                             Console.SetCursorPosition(38, 1);
                                             Console.ForegroundColor = ConsoleColor.DarkGreen;
                                             Console.WriteLine("--------Category--------");
                                             int choise7 = ConsoleHelper.MultipleChoice(36, 9, false, 2,"Software developer","Web/Graphic design","It/Telecommunications", "Economy", "Marketing / Media / PR", "Human Resources / Staff Management");
-                                          
                                             switch (choise7)
                                             {
                                                 case 0:
-                                                    foreach (var employee in db.Employees)
-                                                    {
-                                                        Database.FilitrAnnoucments = employee.announcements.FindAll(a => a.CategoryId == 1);
-                                                        foreach (var item in Database.FilitrAnnoucments)
-                                                        {
-                                                            Console.WriteLine(item);
-                                                        }
-                                                        Thread.Sleep(4000);
-                                                    }
+                                                    ++Helper.Checker;
+                                                    FilitrClass.FilitrCategoryId = 1;
+                                                    break;
+                                                case 1:
+                                                    ++Helper.Checker;
+                                                    FilitrClass.FilitrCategoryId = 2;
+                                                    break;
+                                                case 2:
+                                                    ++Helper.Checker;
+                                                    FilitrClass.FilitrCategoryId = 3;
+                                                    break;
+                                                case 3:
+                                                    ++Helper.Checker;
+                                                    FilitrClass.FilitrCategoryId = 4;
+                                                    break;
+                                                case 4:
+                                                    ++Helper.Checker;
+                                                    FilitrClass.FilitrCategoryId = 5;
+                                                    break;
+                                                case 5:
+                                                    ++Helper.Checker;
+                                                    FilitrClass.FilitrCategoryId = 6;
                                                     break;
                                             }
-                                            int choise8 = ConsoleHelper.MultipleChoice(36, 9, true, 2, "Sumgait", "Ganja", "Baku", "Lankaran", "Shaki", "Quba");
+                                            Console.Clear();
+                                            Console.SetCursorPosition(38, 1);
+                                            Console.ForegroundColor = ConsoleColor.DarkGreen;
+                                            Console.WriteLine("--------City--------");
+                                            int choise8 = ConsoleHelper.MultipleChoice(36, 9, false, 2, "Sumgait", "Ganja", "Baku", "Lankaran", "Shaki", "Quba");                 
                                             switch (choise8)
                                             {
                                                 case 0:
-                                                    foreach (var item in Database.FilitrAnnoucments)
-                                                    {
-                                                        Console.WriteLine(item);
-                                                    }
-                                                    Database.FilitrAnnoucments = Database.FilitrAnnoucments.FindAll(a => a.Age =="18-25" );
-                                                   
-                                                    Thread.Sleep(10000);
-
-
+                                                    ++Helper.Checker;
+                                                    FilitrClass.FilitrCity = "Sumgait";
+                                                    break;
+                                                case 1:
+                                                    ++Helper.Checker;
+                                                    FilitrClass.FilitrCity = "Ganja";
+                                                    break;
+                                                case 2:
+                                                    ++Helper.Checker;
+                                                    FilitrClass.FilitrCity = "Baku";
+                                                    break;
+                                                case 3:
+                                                    ++Helper.Checker;
+                                                    FilitrClass.FilitrCity = "Lankaran";
+                                                    break;
+                                                case 4:
+                                                    ++Helper.Checker;
+                                                    FilitrClass.FilitrCity = "Shaki";
+                                                    break;
+                                                case 5:
+                                                    ++Helper.Checker;
+                                                    FilitrClass.FilitrCity = "Quba";
                                                     break;
                                             }
+                                            Console.Clear();
+                                            Console.SetCursorPosition(38, 1);
+                                            Console.ForegroundColor = ConsoleColor.DarkGreen;
+                                            Console.WriteLine("--------Salary--------");
+                                            int choise9 = ConsoleHelper.MultipleChoice(36, 9, false, 2, "800+ Azn", "1000+ Azn", "1500+ Azn", "2000+ Azn", "3000+ Azn");
+                                            switch (choise9)
+                                            {
+                                                case 0:
+                                                    ++Helper.Checker;
+                                                    FilitrClass.FilitrMinimumSalary = 800;
+                                                    break;
+                                                case 1:
+                                                    ++Helper.Checker;
+                                                    FilitrClass.FilitrMinimumSalary = 1000;
+                                                    break;
+                                                case 2:
+                                                    ++Helper.Checker;
+                                                    FilitrClass.FilitrMinimumSalary = 1500;
+                                                    break;
+                                                case 3:
+                                                    ++Helper.Checker;
+                                                    FilitrClass.FilitrMinimumSalary = 2000;
+                                                    break;
+                                                case 4:
+                                                    ++Helper.Checker;
+                                                    FilitrClass.FilitrMinimumSalary = 3000;
+                                                    break;
+                                            }
+                                          
+                                                Database.FilitrAnnoucments = Database.FilitrAnnoucments.FindAll(a => a.CategoryId == FilitrClass.FilitrCategoryId && a.City == FilitrClass.FilitrCity && FilitrClass.FilitrMinimumSalary < a.Salary);
+                                            if (Database.FilitrAnnoucments.Count == 0)
+                                            {
+                                                Console.Clear();
+                                                Console.ForegroundColor = ConsoleColor.DarkRed;
+                                                Console.SetCursorPosition(38, 0);
+                                                Console.WriteLine("We havent find annoucment this properties!!"); Console.ForegroundColor = ConsoleColor.White;
+                                                Console.SetCursorPosition(38, 1);
+                                                Console.ForegroundColor = ConsoleColor.DarkGreen;
+                                                Console.WriteLine("If you want continue to search or go Back?"); Console.ForegroundColor = ConsoleColor.White;
+                                                int choise10 = ConsoleHelper.MultipleChoice(36, 9, false, 2, "Continue Searching", "Back");
+                                                switch (choise10)
+                                                {
+                                                    case 0:
+                                                        goto filitroptions;
+                                                        break;
+                                                }
+                                            }
+                                                Database.FilitrAnnoucments.ForEach(a => Console.WriteLine(a));
+                                            
+                                            
+                                              
                                             
                                         }
                                         else if (choise6 == 1)
@@ -436,7 +521,7 @@ namespace boss.az
                 {
                     goto FirstPart;
                 }
-            }
+            } 
             else if (choise1 == 1)
             {
                 //Part of emloyee
