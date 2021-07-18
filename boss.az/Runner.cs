@@ -282,6 +282,14 @@ namespace boss.az
                                                     Console.ForegroundColor = ConsoleColor.DarkYellow;
                                                     Console.WriteLine("New Work Name: "); Console.ForegroundColor = ConsoleColor.White;
                                                     string workName = Console.ReadLine();
+                                                    if (db.isString(workName)) { }
+                                                    else
+                                                    {
+                                                        Console.ForegroundColor = ConsoleColor.DarkRed;
+                                                        Console.WriteLine("Incorrect work name!!");
+                                                        Thread.Sleep(1000);
+                                                        goto case 0;
+                                                    }
                                                     cvUpdate.WorkName = workName;
                                                     Console.ForegroundColor = ConsoleColor.DarkMagenta;
                                                     Console.WriteLine("Your Work name updated sucesfully"); Console.ForegroundColor = ConsoleColor.White;
@@ -290,7 +298,15 @@ namespace boss.az
                                                     Console.Clear();
                                                     Console.ForegroundColor = ConsoleColor.DarkYellow;
                                                     Console.WriteLine("New Worker Name: "); Console.ForegroundColor = ConsoleColor.White;
-                                                    string workerName = Console.ReadLine();
+                                                    string workerName = Console.ReadLine();    
+                                                    if (db.isString(workerName)) { }
+                                                    else
+                                                    {
+                                                        Console.ForegroundColor = ConsoleColor.DarkRed;
+                                                        Console.WriteLine("Incorrect worker name!!");
+                                                        Thread.Sleep(1000);
+                                                        goto case 1;
+                                                    }
                                                     cvUpdate.Name = workerName;
                                                     Console.ForegroundColor = ConsoleColor.DarkMagenta;
                                                     Console.WriteLine("Your Worker name updated sucesfully"); Console.ForegroundColor = ConsoleColor.White;
@@ -318,6 +334,14 @@ namespace boss.az
                                                     Console.ForegroundColor = ConsoleColor.DarkYellow;
                                                     Console.WriteLine("New City: "); Console.ForegroundColor = ConsoleColor.White;
                                                     string city = Console.ReadLine();
+                                                    if (db.isString(city)) { }
+                                                    else
+                                                    {
+                                                        Console.ForegroundColor = ConsoleColor.DarkRed;
+                                                        Console.WriteLine("Incorrect city name!!");
+                                                        Thread.Sleep(1000);
+                                                        goto case 3;
+                                                    }
                                                     cvUpdate.City = city;
                                                     Console.ForegroundColor = ConsoleColor.DarkMagenta;
                                                     Console.WriteLine("Your City updated sucesfully"); Console.ForegroundColor = ConsoleColor.White;
@@ -499,8 +523,59 @@ namespace boss.az
                                                 }
                                                 ///***************NOT COMPLETED HERE
                                             }
+                                            Console.Clear();
+                                            Console.ForegroundColor = ConsoleColor.DarkGreen;
                                             Database.FilitrAnnoucments.ForEach(a => Console.WriteLine(a));
-                                            Thread.Sleep(2000);
+                                            likeannouncment:
+                                            Console.ForegroundColor = ConsoleColor.Yellow;
+                                            Console.WriteLine("Do you like any announcment?(Y/N)");
+                                            string option = Console.ReadLine();
+                                            if (option == "Y" || option == "y")
+                                            {
+                                            subscribeannouncment:
+                                                Console.ForegroundColor = ConsoleColor.Cyan;
+                                                Console.Write("Enter which announcment you want subscribe(With id): ");
+                                                string id = Console.ReadLine();
+                                                int check3 = 0;
+                                                if (db.isNumber(id))
+                                                {
+                                                    foreach (var announcment in Database.FilitrAnnoucments)
+                                                    {
+                                                        if (announcment.ThisId == int.Parse(id))
+                                                        {
+                                                            
+                                                        }
+                                                    }
+                                                    if (check3 == 0)
+                                                    {
+                                                        Console.ForegroundColor = ConsoleColor.Red;
+                                                        Console.WriteLine("No annoucment with this id"); Console.ForegroundColor = ConsoleColor.White;
+                                                        Thread.Sleep(1000);
+                                                        goto subscribeannouncment;
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    Console.ForegroundColor = ConsoleColor.Red;
+                                                    Console.WriteLine("Incorrect Id"); Console.ForegroundColor = ConsoleColor.White;
+                                                    Thread.Sleep(1000);
+                                                    goto subscribeannouncment;
+                                                }
+                                            }
+                                            else if (option == "N" || option == "n")
+                                            {
+
+                                            }
+                                            else
+                                            {
+                                                Console.ForegroundColor = ConsoleColor.DarkRed;
+                                                Console.WriteLine("Incorrect option"); Console.ForegroundColor = ConsoleColor.White;
+                                                Thread.Sleep(1000);
+                                                goto likeannouncment;
+                                            }
+
+                                                
+
                                         }
                                         else if (choise6 == 1)
                                         {
