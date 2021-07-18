@@ -39,7 +39,7 @@ namespace boss.az
         public override string ToString()
         {
             return $"ID:{ThisId}\nSubject:{Subject}\nCity:{City}\nAge: {Age}\nAnnoucmentTime:{AnnoucmentTime}\nAnnoucmentEndTime: {AnnoucmentEndTime}\n" +
-                $"Salary:{Salary}\nWorkExperience: {WorkExperience}\nRelevantPerson: {RelevantPerson}\nEmail: {Email}\nPhoneNumber: {PhoneNumber}";
+                $"Salary:{Salary}\nWorkExperience: {WorkExperience}\nRelevantPerson: {RelevantPerson}\nEmail: {Email}\nPhoneNumber: +{PhoneNumber}";
         }
     }
 }

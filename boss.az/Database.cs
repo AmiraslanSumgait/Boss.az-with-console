@@ -20,7 +20,7 @@ namespace boss.az
         }
         public bool isNumber(string id)
         {
-            return Regex.IsMatch(id, @"^-?[0-9][0-9,\.]+$");
+            return Regex.IsMatch(id, @"[0-9\-]+");
         }
         public bool isString(string str)
         {

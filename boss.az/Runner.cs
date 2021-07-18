@@ -22,11 +22,11 @@ namespace boss.az
             Category category4 = new Category("Economy", 4);
             Category category5 = new Category("Marketing / Media / PR", 5);
             Category category6 = new Category("Human Resources / Staff Management ", 6);
-            Announcement announcement1 = new Announcement(1, "React developer", "Sumgait", "18-25", new DateTime(2020, 09, 21), new DateTime(2020, 10, 21), 900, "1 to 3 years", "Amiraslan", "emiraslaneliyev45@gmail.com", "+994557134655");
-            Announcement announcement2 = new Announcement(1, "Php developer", "Baku", "20-40", new DateTime(2021, 02, 10), new DateTime(2020, 03, 10), 1500, "More than 1 year", "Kenan", "Kenan23@gmail.com", "+994558557498");
-            Announcement announcement3 = new Announcement(2, "UI/UX Designer", "Ganja", "25-40", new DateTime(2019, 03, 5), new DateTime(2019, 04, 10), 2100, "More than 3 year", "Nebi", "nnabili@gmail.com", "+994557135755");
-            Announcement announcement4 = new Announcement(2, "Graphic Designer", "Qabala", "20-30", new DateTime(2021, 10, 21, 23, 30, 40), new DateTime(2020, 11, 21), 3100, "More than 2 year", "Burak", "burakaktas@gmail.com", "+9043239430");
-            Announcement announcement5 = new Announcement(5, "Administrative assistant", "Ganja", "20-30", new DateTime(2021, 10, 21, 23, 30, 40), new DateTime(2020, 11, 21), 3500, "More than 2 year", "Burak", "burakaktas@gmail.com", "+9043239430");
+            Announcement announcement1 = new Announcement(1, "React developer", "Sumgait", "18-25", new DateTime(2020, 09, 21), new DateTime(2020, 10, 21), 900, "1 to 3 years", "Amiraslan", "emiraslaneliyev45@gmail.com", "994557134655");
+            Announcement announcement2 = new Announcement(1, "Php developer", "Baku", "20-40", new DateTime(2021, 02, 10), new DateTime(2020, 03, 10), 1500, "More than 1 year", "Kenan", "Kenan23@gmail.com", "994558557498");
+            Announcement announcement3 = new Announcement(2, "UI/UX Designer", "Ganja", "25-40", new DateTime(2019, 03, 5), new DateTime(2019, 04, 10), 2100, "More than 3 year", "Nebi", "nnabili@gmail.com", "994557135755");
+            Announcement announcement4 = new Announcement(2, "Graphic Designer", "Qabala", "20-30", new DateTime(2021, 10, 21, 23, 30, 40), new DateTime(2020, 11, 21), 3100, "More than 2 year", "Burak", "burakaktas@gmail.com", "9043239430");
+            Announcement announcement5 = new Announcement(5, "Administrative assistant", "Ganja", "20-30", new DateTime(2021, 10, 21, 23, 30, 40), new DateTime(2020, 11, 21), 3500, "More than 2 year", "Burak", "burakaktas@gmail.com", "9043239430");
             Database.FilitrAnnoucments.Add(announcement5);
             Database.FilitrAnnoucments.Add(announcement4);
             Database.FilitrAnnoucments.Add(announcement3);
@@ -666,6 +666,119 @@ namespace boss.az
                                         }
 
                                     }
+                                    else if (choise4 == 1)
+                                    {
+                                        Console.Clear();
+                                        employee.PrintAnnoucments();
+                                        deleteannoucment:
+                                        if (employee.IsListEmpty(employee.Announcements))
+                                        {
+                                            Console.ForegroundColor = ConsoleColor.DarkGray;
+                                            Console.WriteLine("Your  annoucment list empty"); Console.ForegroundColor = ConsoleColor.White;
+                                        }
+                                        Console.ForegroundColor = ConsoleColor.DarkCyan;
+                                        Console.Write("Which announcment you want delete(with id): ");
+                                        string id;
+                                        int check1 = 0;
+                                        id = Console.ReadLine();
+                                        if (db.isNumber(id))
+                                        {
+                                            foreach (var announcement in employee.Announcements)
+                                            {
+                                                if (announcement.ThisId.ToString() == id)
+                                                {
+                                                    ++check1;
+                                                    break;
+                                                }
+                                            }
+                                            if (check1 == 0)
+                                            {
+                                                Console.ForegroundColor = ConsoleColor.Red;
+                                                Console.WriteLine("You haven't annoucment this id"); Console.ForegroundColor = ConsoleColor.White;
+                                                goto deleteannoucment;
+                                            }
+                                            var item = employee.Announcements.SingleOrDefault(x => x.ThisId == int.Parse(id));
+                                            employee.Announcements.Remove(item);
+                                            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                                            Console.WriteLine("Your announcment deleted succesfully"); Console.ForegroundColor = ConsoleColor.White;
+                                            Thread.Sleep(1500);
+                                            goto employeeoptions;
+                                        }
+                                        else
+                                        {
+                                            Console.ForegroundColor = ConsoleColor.Red;
+                                            Console.WriteLine("Incorrect Id"); Console.ForegroundColor = ConsoleColor.White;
+                                            goto deleteannoucment;
+                                        }
+
+                                    }
+                                    else if (choise4 == 2)
+                                    {
+                                        int check2 = 0;
+                                        Console.Clear();
+                                        employee.PrintAnnoucments();
+                                        updateannouncment:
+                                        Console.ForegroundColor = ConsoleColor.DarkCyan;
+                                        Console.WriteLine("Which announcment you want update (with id)");
+                                        string id = Console.ReadLine();
+                                        if (db.isNumber(id))
+                                        {
+                                            foreach (var announcment in employee.Announcements)
+                                            {
+                                                if (announcment.ThisId.ToString() == id)
+                                                {
+                                                    ++check2;
+                                                    break;
+                                                }
+                                            }
+                                            if (check2 == 0)
+                                            {
+                                                Console.ForegroundColor = ConsoleColor.Red;
+                                                Console.WriteLine("You haven't cv this id"); Console.ForegroundColor = ConsoleColor.White;
+                                                goto updateannouncment;
+                                            }
+                                            var cvUpdate = employee.Announcements.SingleOrDefault(x => x.ThisId == int.Parse(id));
+                                            Console.Clear();
+                                        updateoptions:
+                                            Console.Clear();
+                                            Console.SetCursorPosition(38, 7);
+                                            Console.WriteLine("Which parameter you want update: ");
+                                            int choise8 = ConsoleHelper.MultipleChoice(36, 9, false, 2, "Work Name", "Worker Name", "Age", "City", "Skills", "Experience", "<-Back");
+                                            //*UPDATED NOT COMPLETED
+                                        }
+                                        else
+                                        {
+                                            Console.ForegroundColor = ConsoleColor.Red;
+                                            Console.WriteLine("Incorrect Id"); Console.ForegroundColor = ConsoleColor.White;
+                                            goto updateannouncment;
+                                        }
+
+                                    }
+                                    else if (choise4 == 3)
+                                    {
+                                        Console.Clear();
+                                        employee.PrintAnnoucments();
+                                        if (employee.IsListEmpty(employee.Announcements))
+                                        {
+                                            Console.ForegroundColor = ConsoleColor.DarkGray;
+                                            Console.WriteLine("Your  annoucment list empty"); Console.ForegroundColor = ConsoleColor.White;
+                                        }
+                                        Console.ForegroundColor = ConsoleColor.DarkYellow;
+                                        Console.Write("If you want back press any key->");
+                                        Console.ForegroundColor = ConsoleColor.White;
+                                        Console.ReadLine();
+                                        goto employeeoptions;
+                                    }
+
+                                }
+                                else
+                                {
+                                    Console.ForegroundColor = ConsoleColor.DarkRed;
+                                    Console.Write("Incorrect password try again!!\n");
+                                    Console.ForegroundColor = ConsoleColor.White;
+                                    int choise3 = ConsoleHelper.MultipleChoice(50, 5, false, 1, "Continue", "<-Back");
+                                    if (choise3 == 1) { goto SecondPart; }
+                                    if (choise3 == 0) { db.ClearCurrentConsoleLine(); db.ClearLastLine(); Console.WriteLine(); continue; }
                                 }
                             }
                         }

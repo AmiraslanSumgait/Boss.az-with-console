@@ -91,6 +91,7 @@ namespace boss.az
                 goto Cvdisplay;
             }
         city:
+            Console.ForegroundColor = ConsoleColor.Cyan;
             Console.Write("City: ");
             string city = Console.ReadLine();
             if (db.isString(city)) { }
@@ -115,6 +116,7 @@ namespace boss.az
                 goto Age1;
             }
             salary:
+            Console.ForegroundColor = ConsoleColor.Cyan;
             Console.Write("Salary: ");
             string salary = Console.ReadLine();
             if (db.isNumber(salary)) { }
@@ -137,7 +139,7 @@ namespace boss.az
                 Console.ForegroundColor = ConsoleColor.DarkRed;
                 Console.Write("Incorrect relevant person name try again!!\n");
                 Console.ForegroundColor = ConsoleColor.White;
-                goto Cvdisplay;
+                goto relevantperson;
             }
             email:
             Console.ForegroundColor = ConsoleColor.Cyan;

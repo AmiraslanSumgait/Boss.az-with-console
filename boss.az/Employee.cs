@@ -13,20 +13,20 @@ namespace boss.az
     }
     class Employee : Person, IEmploye
     {
-        public List<Announcement> announcements { get; set; } = new List<Announcement>();
+        public List<Announcement> Announcements { get; set; } = new List<Announcement>();
 
         public Employee(string name, string surname, int age,string email,string password):base(name,surname,age,email,password)
         {
            
         }
         public void AddAnnoucment(Announcement announcement)
-        {           
-            announcements.Add(announcement);
+        {
+            Announcements.Add(announcement);
         }
         public void PrintAnnoucments()
         {
             int count = 0;
-            foreach (var annoucment in announcements)
+            foreach (var annoucment in Announcements)
             {
                 ++count;
                 if (count % 2 == 0) { Console.ForegroundColor = ConsoleColor.Green; }
@@ -34,6 +34,11 @@ namespace boss.az
                 Console.WriteLine($"------------Annoucment {count}------------");
                 Console.WriteLine(annoucment);
             }
+        }
+        public bool IsListEmpty(List<Announcement> announcements)
+        {
+            if (announcements.Count == 0) return true;
+            else return false;
         }
         public override string ToString()
         {
