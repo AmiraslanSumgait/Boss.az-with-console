@@ -32,8 +32,10 @@ namespace boss.az
                     Console.SetCursorPosition(startX + (i % optionsPerLine) * spacingPerLine, startY + i / optionsPerLine);
 
                     if (i == currentSelection)
-                        Console.ForegroundColor = ConsoleColor.DarkBlue;
-
+                    {
+                        Console.ForegroundColor = ConsoleColor.Black;
+                        Console.BackgroundColor = ConsoleColor.Magenta;
+                    }
                     Console.Write(options[i]);
 
                     Console.ResetColor();

@@ -9,6 +9,7 @@ namespace boss.az
     interface IWorker
     {
         public void AddCv(CV cv);
+        public void DeleteCv(int id);
     }
     class Worker:Person,IWorker
     {
@@ -24,11 +25,6 @@ namespace boss.az
 
         public void AddCv(CV cv)
         {
-            Cvs.Add(cv);
-        }
-        public void AddCvc(int categoryId,string name,string workName,int age,string city,string skills,string experience)
-        {
-            CV cv = new CV(categoryId, workName, name, age, city, DateTime.Now, DateTime.Now.AddDays(30), skills, experience);
             Cvs.Add(cv);
         }
         public void DeleteCv(int id)

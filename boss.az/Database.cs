@@ -22,6 +22,10 @@ namespace boss.az
         {
             return Regex.IsMatch(id, @"^-?[0-9][0-9,\.]+$");
         }
+        public bool isString(string str)
+        {
+            return Regex.IsMatch(str, "^[A-Z][a-zA-Z]*$");
+        }
         public bool ValidatePassword(string password)
         {
             const int MIN_LENGTH = 8;
@@ -84,6 +88,10 @@ namespace boss.az
                 Console.Write(new string(' ', Console.WindowWidth));
                 Console.SetCursorPosition(0, Console.CursorTop - 1);
             }
+        }
+        public void PrintAnnoucments()
+        {
+
         }
     }
 }
