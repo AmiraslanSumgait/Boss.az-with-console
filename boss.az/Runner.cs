@@ -626,7 +626,7 @@ namespace boss.az
                                 {
                                     ++check;
                                     employeeoptions:
-                                    int choise4 = ConsoleHelper.MultipleChoice(50, 9, true, 1, "Add Annoucment", "Delete annoucment", "Update annoucment", "Show your annoucments", "Find work", "<-Back");
+                                    int choise4 = ConsoleHelper.MultipleChoice(50, 9, true, 1, "Add Annoucment", "Delete annoucment", "Update annoucment", "Show your annoucments", "Show All Cvs", "<-Back");
                                     if (choise4 == 0)
                                     {
                                         Console.Clear();
@@ -737,14 +737,144 @@ namespace boss.az
                                                 Console.WriteLine("You haven't cv this id"); Console.ForegroundColor = ConsoleColor.White;
                                                 goto updateannouncment;
                                             }
-                                            var cvUpdate = employee.Announcements.SingleOrDefault(x => x.ThisId == int.Parse(id));
+                                            var annoucmentUpdate = employee.Announcements.SingleOrDefault(x => x.ThisId == int.Parse(id));
                                             Console.Clear();
                                         updateoptions:
                                             Console.Clear();
                                             Console.SetCursorPosition(38, 7);
                                             Console.WriteLine("Which parameter you want update: ");
-                                            int choise8 = ConsoleHelper.MultipleChoice(36, 9, false, 2, "Work Name", "Worker Name", "Age", "City", "Skills", "Experience", "<-Back");
-                                            //*UPDATED NOT COMPLETED
+                                            int choise8 = ConsoleHelper.MultipleChoice(36, 9, false, 2, "Job Name", "Work Experience", "Age", "City", "Relevant Person", "Email","Phone Number","<-Back");
+                                            switch (choise8)
+                                            {
+                                                case 0:
+                                                    Console.Clear();
+                                                    Console.ForegroundColor = ConsoleColor.DarkYellow;
+                                                    Console.WriteLine("New Job Name: "); Console.ForegroundColor = ConsoleColor.White;
+                                                    string subject = Console.ReadLine();
+                                                    if (db.isString(subject)) { }
+                                                    else
+                                                    {
+                                                        Console.ForegroundColor = ConsoleColor.DarkRed;
+                                                        Console.WriteLine("Incorrect Job name!!");
+                                                        Thread.Sleep(1000);
+                                                        goto case 0;
+                                                    }
+                                                    annoucmentUpdate.Subject = subject;
+                                                    Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                                                    Console.WriteLine("Work name updated sucesfully"); Console.ForegroundColor = ConsoleColor.White;
+                                                    break; 
+                                                case 1:
+                                                    Console.Clear();
+                                                    Console.ForegroundColor = ConsoleColor.DarkYellow;
+                                                    Console.WriteLine("New Experience: "); Console.ForegroundColor = ConsoleColor.White;
+                                                    string workExperience = Console.ReadLine();
+                                                    annoucmentUpdate.WorkExperience = workExperience;
+                                                    Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                                                    Console.WriteLine("Work Experience updated sucesfully"); Console.ForegroundColor = ConsoleColor.White;
+                                                    break;          
+                                                case 2:
+                                                    Console.Clear();
+                                                    Console.ForegroundColor = ConsoleColor.DarkYellow;
+                                                    Console.WriteLine("---Age must be more than 18---");
+                                                    Console.WriteLine("New Age: "); Console.ForegroundColor = ConsoleColor.White;
+                                                    string age = Console.ReadLine();
+                                                    if (db.IsValidAge(age)) { }
+                                                    else
+                                                    {
+                                                        Console.ForegroundColor = ConsoleColor.DarkRed;
+                                                        Console.WriteLine("Incorrect Age!!");
+                                                        Thread.Sleep(1000);
+                                                        goto case 2;
+                                                    }
+                                                    annoucmentUpdate.Age = age;
+                                                    Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                                                    Console.WriteLine("Your Age updated sucesfully"); Console.ForegroundColor = ConsoleColor.White;
+                                                    break;
+                                                case 3:
+                                                    Console.Clear();
+                                                    Console.ForegroundColor = ConsoleColor.DarkYellow;
+                                                    Console.WriteLine("New City: "); Console.ForegroundColor = ConsoleColor.White;
+                                                    string city = Console.ReadLine();
+                                                    if (db.isString(city)) { }
+                                                    else
+                                                    {
+                                                        Console.ForegroundColor = ConsoleColor.DarkRed;
+                                                        Console.WriteLine("Incorrect city name!!");
+                                                        Thread.Sleep(1000);
+                                                        goto case 3;
+                                                    }
+                                                    annoucmentUpdate.City = city;
+                                                    Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                                                    Console.WriteLine("City updated sucesfully"); Console.ForegroundColor = ConsoleColor.White;
+                                                    break;
+                                                case 4:
+                                                    Console.Clear();
+                                                    Console.ForegroundColor = ConsoleColor.DarkYellow;
+                                                    Console.WriteLine("New Relevant Person: "); Console.ForegroundColor = ConsoleColor.White;
+                                                    string relevantPerson = Console.ReadLine();
+                                                    if (db.isString(relevantPerson)) { }
+                                                    else
+                                                    {
+                                                        Console.ForegroundColor = ConsoleColor.DarkRed;
+                                                        Console.WriteLine("Incorrect relevant person name!!");
+                                                        Thread.Sleep(1000);
+                                                        goto case 4;
+                                                    }
+                                                    annoucmentUpdate.RelevantPerson = relevantPerson;
+                                                    Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                                                    Console.WriteLine("Relevant Person updated sucesfully"); Console.ForegroundColor = ConsoleColor.White;
+                                                    break;
+                                                case 5:
+                                                    Console.Clear();
+                                                    Console.ForegroundColor = ConsoleColor.DarkYellow;
+                                                    Console.WriteLine("New Email: "); Console.ForegroundColor = ConsoleColor.White;
+                                                    string emaill = Console.ReadLine();
+                                                    if (db.IsValidEmail(emaill)) { }
+                                                    else
+                                                    {
+                                                        Console.ForegroundColor = ConsoleColor.DarkRed;
+                                                        Console.WriteLine("Incorrect email!!");
+                                                        Thread.Sleep(1000);
+                                                        goto case 5;
+                                                    }
+                                                    annoucmentUpdate.Email = emaill;
+                                                    Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                                                    Console.WriteLine("Relevant Person updated sucesfully"); Console.ForegroundColor = ConsoleColor.White;
+                                                    break;
+                                                case 6:
+                                                    Console.Clear();
+                                                    Console.ForegroundColor = ConsoleColor.DarkYellow;
+                                                    Console.WriteLine("New Phone Number: "); Console.ForegroundColor = ConsoleColor.White;
+                                                    string phoneNumber = Console.ReadLine();
+                                                    if (db.isNumber(phoneNumber)) { }
+                                                    else
+                                                    {
+                                                        Console.ForegroundColor = ConsoleColor.DarkRed;
+                                                        Console.WriteLine("Incorrect phone number!!");
+                                                        Thread.Sleep(1000);
+                                                        goto case 6;
+                                                    }
+                                                    annoucmentUpdate.PhoneNumber = phoneNumber;
+                                                    Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                                                    Console.WriteLine("Phone Number updated sucesfully"); Console.ForegroundColor = ConsoleColor.White;
+                                                    break;
+                                                case 7:
+                                                    goto employeeoptions;
+                                                    break;
+                                            }
+                                            Console.SetCursorPosition(38, 7);
+                                            Console.ForegroundColor = ConsoleColor.DarkGreen;
+                                            Console.WriteLine("Do you want continue or go back? ");
+                                            int choise9 = ConsoleHelper.MultipleChoice(36, 9, false, 2, "Continue", "Back");
+                                            switch (choise9)
+                                            {
+                                                case 0:
+                                                    goto updateoptions;
+                                                    break;
+                                                case 1:
+                                                    goto employeeoptions;
+                                                    break;
+                                            }
                                         }
                                         else
                                         {
@@ -769,7 +899,6 @@ namespace boss.az
                                         Console.ReadLine();
                                         goto employeeoptions;
                                     }
-
                                 }
                                 else
                                 {
