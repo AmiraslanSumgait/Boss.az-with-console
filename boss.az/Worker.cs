@@ -39,6 +39,19 @@ namespace boss.az
                 }
             }
         }
+        public void PrintNotifications()
+        {
+            int count = 0;
+            foreach (var notification in Notifications)
+            {
+                ++count;
+                if (count % 2 == 0) { Console.ForegroundColor = ConsoleColor.Green; }
+                else Console.ForegroundColor = ConsoleColor.Blue;
+                Console.WriteLine($"------------Notification {count}------------");
+                Console.WriteLine(notification);
+            }
+
+        }
         public void PrintCvs()
         {
             int count = 0;

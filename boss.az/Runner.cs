@@ -690,7 +690,121 @@ namespace boss.az
                                     }
                                     if (choise4 == 5)
                                     {
-                                        //*******Worker notifications
+                                    Notification:
+                                        Console.Clear();
+                                        if (worker.Notifications.Count == 0)
+                                        {
+                                            Console.ForegroundColor = ConsoleColor.DarkGray;
+                                            Console.WriteLine("You dont have any notification"); Console.ForegroundColor = ConsoleColor.White;
+                                            Console.ForegroundColor = ConsoleColor.DarkYellow;
+                                            Console.Write("Press enter key go back");
+                                            Console.ReadLine(); Console.ForegroundColor = ConsoleColor.White;
+                                            goto workeroptions;
+                                        }
+                                        Console.ForegroundColor = ConsoleColor.DarkYellow;
+                                        Console.WriteLine("-----------------------NOTIFICATIONS-----------------------"); Console.ForegroundColor = ConsoleColor.White;
+                                        worker.PrintNotifications();
+                                        int choise11 = ConsoleHelper.MultipleChoice(65, 1, false, 2, "Select notification", "Accept all notification", "Reject all notification", "<-Back");
+                                        if (choise11 == 0)
+                                        {
+                                            Console.Clear();
+                                            Console.ForegroundColor = ConsoleColor.DarkYellow;
+                                            Console.WriteLine("-----------------------NOTIFICATIONS-----------------------"); Console.ForegroundColor = ConsoleColor.White;
+                                            worker.PrintNotifications();
+                                        selectnotification:
+                                            Console.ForegroundColor = ConsoleColor.DarkCyan;
+                                            Console.WriteLine("Which notification you want select?"); Console.ForegroundColor = ConsoleColor.White;
+                                            string id = Console.ReadLine();
+                                            int count = 0;
+                                            int count1 = 0;
+                                            int check2 = 0;
+                                            if (db.isNumber(id))
+                                            {
+                                                foreach (var notification in worker.Notifications)
+                                                {
+                                                    if (notification.Id == int.Parse(id))
+                                                    {
+                                                        ++check2;
+                                                        break;
+                                                    }
+                                                    ++count;
+                                                }
+                                                if (check2 == 0)
+                                                {
+                                                    Console.ForegroundColor = ConsoleColor.DarkRed;
+                                                    Console.WriteLine("You havent notification this id"); Console.ForegroundColor = ConsoleColor.White;
+                                                    Thread.Sleep(1000);
+                                                    goto selectnotification;
+                                                }
+                                                foreach (var joboffer in worker.JobOffers)
+                                                {
+                                                    if (count == count1)
+                                                    {
+                                                        Console.Clear();
+                                                        Console.ForegroundColor = ConsoleColor.DarkGreen;
+                                                        Console.WriteLine(joboffer); Console.ForegroundColor = ConsoleColor.White;
+                                                        int choise10 = ConsoleHelper.MultipleChoice(50, 1, false, 2, "Accept job offer", "Reject job offer");
+                                                        if (choise10 == 0)
+                                                        {
+                                                            Console.Clear();
+                                                            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                                                            Console.SetCursorPosition(36, 9);
+                                                            Console.WriteLine("-----You accepted this job offer succesfully----"); Console.ForegroundColor = ConsoleColor.White;
+                                                            worker.Notifications.RemoveAt(count);
+                                                            worker.JobOffers.RemoveAt(count);
+                                                            Thread.Sleep(1500);
+                                                            goto Notification;
+                                                        }
+                                                        else if (choise10 == 1)
+                                                        {
+                                                            Console.Clear();
+                                                            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                                                            Console.SetCursorPosition(36, 9);
+                                                            Console.WriteLine("-----You rejected this job offer succesfully----"); Console.ForegroundColor = ConsoleColor.White;
+                                                            worker.Notifications.RemoveAt(count);
+                                                            worker.JobOffers.RemoveAt(count);
+                                                            Thread.Sleep(1500);
+                                                            goto Notification;
+                                                        }
+                                                    }
+                                                    ++count1;
+                                                }
+                                            }
+                                            else
+                                            {
+                                                Console.ForegroundColor = ConsoleColor.DarkRed;
+                                                Console.WriteLine("Incorrect Id"); Console.ForegroundColor = ConsoleColor.White;
+                                                Thread.Sleep(1000);
+                                                goto selectnotification;
+                                            }
+                                        }
+                                        else if (choise11 == 1)
+                                        {
+
+                                            Console.Clear();
+                                            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                                            Console.SetCursorPosition(36, 9);
+                                            Console.WriteLine("-----You accepted all  job offers succesfully----"); Console.ForegroundColor = ConsoleColor.White;
+                                            worker.Notifications.RemoveRange(0, worker.Notifications.Count);
+                                            worker.JobOffers.RemoveRange(0, worker.JobOffers.Count);
+                                            Thread.Sleep(1500);
+                                            goto Notification;
+                                        }
+                                        else if (choise11 == 2)
+                                        {
+                                            Console.Clear();
+                                            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                                            Console.SetCursorPosition(36, 9);
+                                            Console.WriteLine("-----You rejected all  job offers succesfully----"); Console.ForegroundColor = ConsoleColor.White;
+                                            worker.Notifications.RemoveRange(0, worker.Notifications.Count);
+                                            worker.JobOffers.RemoveRange(0, worker.JobOffers.Count);
+                                            Thread.Sleep(1500);
+                                            goto Notification;
+                                        }
+                                        else if (choise11 == 3)
+                                        {
+                                            goto workeroptions;
+                                        }
                                     }
                                     if (choise4 == 6)
                                     {
