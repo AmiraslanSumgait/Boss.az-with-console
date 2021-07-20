@@ -8,13 +8,17 @@ namespace boss.az
 {
     class Notification
     {
-        public int ID { get; set; } = 100;
+        private static int ID { get; set; } = 200;
         public int Id { get; set; }
         public string Text { get; set; }
         public DateTime NotificationTime { get; set; }
         public Notification()
         {
             Id = ++ID;
+        }
+        public override string ToString()
+        {
+            return $"Id: {Id}\nText: {Text}\nNotification Time: {NotificationTime}";
         }
         public void show()
         {

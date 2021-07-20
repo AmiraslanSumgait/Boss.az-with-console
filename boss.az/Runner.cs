@@ -34,15 +34,15 @@ namespace boss.az
             Database.FilitrAnnoucments.Add(announcement1);
             CV cv1 = new CV(1, "Node.js + Java Senior backend engineer", "Nebi", 18, "Sumgait", new DateTime(2021, 10, 21, 23, 30, 00), new DateTime(2021, 11, 21, 23, 30, 00), "Java,Node.js", "More than 2 year");
             CV cv2 = new CV(2, "Product designer", "Akif", 20, "Ganja", new DateTime(2021, 8, 22, 22, 00, 10), new DateTime(2021, 9, 22, 23, 30, 00), "A high degree of technical knowledge balanced with creative ability and a hands-on approach.", "More than 1 year");
-            CV cv3 = new CV(3, "Digital & Web Coordinator", "Ramiz", 24, "Baku", new DateTime(2021, 12, 19, 19, 00, 00), new DateTime(2022, 01, 21, 23, 30, 00), "Able to deliver quality results under time constraints in a fast-paced environment.", "Minimum 2 year");
+            CV cv3 = new CV(3, "Digital & Web Coordinator", "Kamal", 24, "Baku", new DateTime(2021, 12, 19, 19, 00, 00), new DateTime(2022, 01, 21, 23, 30, 00), "Able to deliver quality results under time constraints in a fast-paced environment.", "Minimum 2 year");
             CV cv4 = new CV(4, "Junior Relationship Manager", "Samir", 18, "Lankaran", new DateTime(2021, 10, 21, 23, 30, 00), new DateTime(2021, 11, 21, 23, 30, 00), "Able to work with key stakeholders to a high level", "Minimum 1.5 year");
             CV cv5 = new CV(5, "English Copywriter UX/UI", "Samir", 18, "Shaki", new DateTime(2021, 10, 21, 23, 30, 00), new DateTime(2021, 11, 21, 23, 30, 00), "Creating, writing and reviewing varied content in English for Swissquotes web interfaces, particularly its applications.", "Minimum 1.5 year");
-            CV cv6 = new CV(6, "HR Intern", "Rasim", 32, "Quba", new DateTime(2021, 10, 21, 23, 30, 00), new DateTime(2021, 11, 21, 23, 30, 00), "*Support the employee lifecycle through administrative tasks (contracts, addendums,…)\n*Prepare the onboarding of new joiners", "Minimum 1.5 year");
+            CV cv6 = new CV(6, "HR Intern", "Kamal", 32, "Quba", new DateTime(2021, 10, 21, 23, 30, 00), new DateTime(2021, 11, 21, 23, 30, 00), "*Support the employee lifecycle through administrative tasks (contracts, addendums,…)\n*Prepare the onboarding of new joiners", "Minimum 1.5 year");
             w1.AddCv(cv1);
-            w1.AddCv(cv2);
-            w1.AddCv(cv3);
-            w2.AddCv(cv4);
-            w2.AddCv(cv5);
+            //w1.AddCv(cv2);
+            //w1.AddCv(cv3);
+            //w2.AddCv(cv4);
+            //w2.AddCv(cv5);
             w2.AddCv(cv6);
             Employee emp1 = new Employee("Kenan Idayatov", "Akula", 18, "kenannidayatov@gmail.com", "Progress32");
             Employee emp2 = new Employee("Hormet Hemidov", "idayatov.k", 19, "hhormethemidov@gmail.com", "29092001");
@@ -207,6 +207,10 @@ namespace boss.az
                                         {
                                             Console.ForegroundColor = ConsoleColor.DarkGray;
                                             Console.WriteLine("Your  cv list empty"); Console.ForegroundColor = ConsoleColor.White;
+                                            Console.ForegroundColor = ConsoleColor.Yellow;
+                                            Console.WriteLine("Press any key to go back.."); Console.ForegroundColor = ConsoleColor.White;
+                                            Console.ReadLine();
+                                            goto workeroptions;
                                         }
                                         Console.ForegroundColor = ConsoleColor.DarkCyan;
                                         Console.Write("Which cv you want delete(with id): ");
@@ -246,6 +250,15 @@ namespace boss.az
                                     {
                                         int check2 = 0;
                                         Console.Clear();
+                                        if (worker.Cvs.Count == 0)
+                                        {
+                                            Console.ForegroundColor = ConsoleColor.DarkGray;
+                                            Console.WriteLine("Your  cv list empty"); Console.ForegroundColor = ConsoleColor.White;
+                                            Console.ForegroundColor = ConsoleColor.Yellow;
+                                            Console.WriteLine("Press any key to go back.."); Console.ForegroundColor = ConsoleColor.White;
+                                            Console.ReadLine();
+                                            goto workeroptions;
+                                        }
                                         worker.PrintCvs();
                                     updatecv:
                                         Console.ForegroundColor = ConsoleColor.DarkCyan;
@@ -521,7 +534,6 @@ namespace boss.az
                                                         goto advancedsearch;
                                                         break;
                                                 }
-                                                ///***************NOT COMPLETED HERE
                                             }
                                             Console.Clear();
                                             Console.ForegroundColor = ConsoleColor.DarkGreen;
@@ -543,7 +555,25 @@ namespace boss.az
                                                     {
                                                         if (announcment.ThisId == int.Parse(id))
                                                         {
-                                                            
+                                                            foreach (var employee in db.Employees)
+                                                            {
+                                                                foreach (var annoucment in employee.Announcements)
+                                                                {
+                                                                    if (annoucment.ThisId == int.Parse(id))
+                                                                    {
+                                                                        Notification notification = new Notification { NotificationTime = DateTime.Now, Text = $"{worker.FullName} subscribed your {annoucment.Subject} announcment" };
+                                                                        employee.Notifications.Add(notification);
+                                                                        Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                                                                        Console.WriteLine("----You succesfully subscribed this announcment and your cv send----"); Console.ForegroundColor = ConsoleColor.White;
+                                                                        foreach (var cv in worker.Cvs)
+                                                                        {
+                                                                            employee.SubscribedEmployeeCv.Add(cv);
+                                                                        }  
+                                                                        Thread.Sleep(1500);
+                                                                        goto likeannouncment;
+                                                                    }
+                                                                }
+                                                            }
                                                         }
                                                     }
                                                     if (check3 == 0)
@@ -564,7 +594,7 @@ namespace boss.az
                                             }
                                             else if (option == "N" || option == "n")
                                             {
-
+                                                goto advancedsearch;
                                             }
                                             else
                                             {
@@ -701,7 +731,7 @@ namespace boss.az
                                 {
                                     ++check;
                                     employeeoptions:
-                                    int choise4 = ConsoleHelper.MultipleChoice(50, 9, true, 1, "Add Annoucment", "Delete annoucment", "Update annoucment", "Show your annoucments", "Show All Cvs", "<-Back");
+                                    int choise4 = ConsoleHelper.MultipleChoice(50, 9, true, 1, "Add Annoucment", "Delete annoucment", "Update annoucment", "Show your annoucments", "Show All Cvs","Show Notifications", "<-Back");
                                     if (choise4 == 0)
                                     {
                                         Console.Clear();
@@ -750,6 +780,10 @@ namespace boss.az
                                         {
                                             Console.ForegroundColor = ConsoleColor.DarkGray;
                                             Console.WriteLine("Your  annoucment list empty"); Console.ForegroundColor = ConsoleColor.White;
+                                            Console.ForegroundColor = ConsoleColor.Yellow;
+                                            Console.WriteLine("Press any key to go back.."); Console.ForegroundColor = ConsoleColor.White;
+                                            Console.ReadLine();
+                                            goto employeeoptions;
                                         }
                                         Console.ForegroundColor = ConsoleColor.DarkCyan;
                                         Console.Write("Which announcment you want delete(with id): ");
@@ -791,6 +825,15 @@ namespace boss.az
                                     {
                                         int check2 = 0;
                                         Console.Clear();
+                                        if (employee.Announcements.Count == 0)
+                                        {
+                                            Console.ForegroundColor = ConsoleColor.DarkGray;
+                                            Console.WriteLine("Your  cv list empty"); Console.ForegroundColor = ConsoleColor.White;
+                                            Console.ForegroundColor = ConsoleColor.Yellow;
+                                            Console.WriteLine("Press any key to go back.."); Console.ForegroundColor = ConsoleColor.White;
+                                            Console.ReadLine();
+                                            goto employeeoptions;
+                                        }
                                         employee.PrintAnnoucments();
                                         updateannouncment:
                                         Console.ForegroundColor = ConsoleColor.DarkCyan;
@@ -973,6 +1016,86 @@ namespace boss.az
                                         Console.ForegroundColor = ConsoleColor.White;
                                         Console.ReadLine();
                                         goto employeeoptions;
+                                    }
+                                    else if (choise4 == 4)
+                                    {
+                                        Console.Clear();
+                                        Console.ForegroundColor = ConsoleColor.DarkYellow;
+                                        foreach (var worker in db.Workers)
+                                        {
+                                            foreach (var cv in worker.Cvs)
+                                            {
+                                                Console.WriteLine(cv);
+                                                Console.WriteLine();
+                                            }
+                                        }
+                                        Console.ForegroundColor = ConsoleColor.White;
+                                        Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                                        Console.Write("If you want back press any key->");
+                                        Console.ForegroundColor = ConsoleColor.White;
+                                        Console.ReadLine();
+                                        goto employeeoptions;
+                                    }
+                                    else if (choise4 == 5)
+                                    {
+                                        Console.Clear();
+                                        if (employee.Notifications.Count == 0)
+                                        {
+                                            Console.ForegroundColor = ConsoleColor.DarkGray;
+                                            Console.WriteLine("You dont have any notification"); Console.ForegroundColor = ConsoleColor.White;
+                                            Console.ForegroundColor = ConsoleColor.DarkYellow;
+                                            Console.Write("Press any key go back");
+                                            Console.ReadLine(); Console.ForegroundColor = ConsoleColor.White;
+                                            goto employeeoptions;
+                                        }
+                                        Notification:
+                                        Console.ForegroundColor = ConsoleColor.DarkYellow;
+                                        Console.WriteLine("-----------------------NOTIFICATIONS-----------------------"); Console.ForegroundColor = ConsoleColor.White;
+                                        employee.PrintNotifications();
+                                        
+                                        Console.WriteLine("Which notification you want select?");
+                                        string id = Console.ReadLine();
+                                        int count = 0;
+                                        int count1 = 0;
+                                        if (db.isNumber(id))
+                                        {
+                                           
+                                            foreach (var notification in employee.Notifications)
+                                            {
+                                                if (notification.Id == int.Parse(id))
+                                                {
+                                                    break;
+                                                   // Thread.Sleep(2000);
+                                                }
+                                                ++count;
+                                            }
+                                            foreach (var subcv in employee.SubscribedEmployeeCv)
+                                            {
+                                                if (count == count1)
+                                                {
+                                                    Console.Clear();
+                                                    Console.ForegroundColor = ConsoleColor.DarkGreen;
+                                                    Console.WriteLine(subcv); Console.ForegroundColor = ConsoleColor.White;
+                                                    int choise10 = ConsoleHelper.MultipleChoice(36, 9, false, 2, "Accept", "Reject");
+                                                    if (choise10 ==0)
+                                                    {
+                                                        
+                                                        Console.WriteLine("You accepted this cv succesfully");
+                                                        Thread.Sleep(1500);
+                                                        goto Notification;
+                                                    }
+                                                    else if (choise10 == 2)
+                                                    {
+
+                                                    }
+                                                }
+                                                ++count1;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            //Id reqem olmuyan hissesi
+                                        }
                                     }
                                 }
                                 else

@@ -12,8 +12,7 @@ namespace boss.az
         public List<Worker> Workers { get; set; }
         public List<Employee> Employees { get; set; }
         public List<Category> Categories { get; set; }
-        public static List<Announcement> FilitrAnnoucments { get; set; } = new List<Announcement>();
-        public List<Notification> Notifications { get; set; } = new List<Notification>();
+        public static List<Announcement> FilitrAnnoucments { get; set; } = new List<Announcement>();    
         public bool IsValidEmail(string email)
         {
             // Return true if strIn is in valid e-mail format.
@@ -31,9 +30,7 @@ namespace boss.az
         {
             const int MIN_LENGTH = 8;
             const int MAX_LENGTH = 15;
-
             if (password == null) throw new ArgumentNullException();
-
             bool meetsLengthRequirements = password.Length >= MIN_LENGTH && password.Length <= MAX_LENGTH;
             bool hasUpperCaseLetter = false;
             bool hasLowerCaseLetter = false;
@@ -48,14 +45,12 @@ namespace boss.az
                     else if (char.IsDigit(c)) hasDecimalDigit = true;
                 }
             }
-
             bool isValid = meetsLengthRequirements
                         && hasUpperCaseLetter
                         && hasLowerCaseLetter
                         && hasDecimalDigit
                         ;
             return isValid;
-
         }
         public bool IsValidAge(string age)
         {
