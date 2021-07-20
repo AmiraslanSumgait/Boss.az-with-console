@@ -1038,6 +1038,7 @@ namespace boss.az
                                     }
                                     else if (choise4 == 5)
                                     {
+                                    Notification:
                                         Console.Clear();
                                         if (employee.Notifications.Count == 0)
                                         {
@@ -1048,53 +1049,88 @@ namespace boss.az
                                             Console.ReadLine(); Console.ForegroundColor = ConsoleColor.White;
                                             goto employeeoptions;
                                         }
-                                        Notification:
+                                        
                                         Console.ForegroundColor = ConsoleColor.DarkYellow;
                                         Console.WriteLine("-----------------------NOTIFICATIONS-----------------------"); Console.ForegroundColor = ConsoleColor.White;
                                         employee.PrintNotifications();
-                                        
-                                        Console.WriteLine("Which notification you want select?");
-                                        string id = Console.ReadLine();
-                                        int count = 0;
-                                        int count1 = 0;
-                                        if (db.isNumber(id))
+                                        int choise11 = ConsoleHelper.MultipleChoice(36, 9, false, 2, "Select notification", "<-Back");
+                                        if (choise11 == 0)
                                         {
-                                           
-                                            foreach (var notification in employee.Notifications)
+                                            Console.Clear();
+                                            Console.ForegroundColor = ConsoleColor.DarkYellow;
+                                            Console.WriteLine("-----------------------NOTIFICATIONS-----------------------"); Console.ForegroundColor = ConsoleColor.White;
+                                            employee.PrintNotifications();
+                                            selectnotification:
+                                            Console.ForegroundColor = ConsoleColor.DarkCyan;
+                                            Console.WriteLine("Which notification you want select?"); Console.ForegroundColor = ConsoleColor.White;
+                                            string id = Console.ReadLine();
+                                            int count = 0;
+                                            int count1 = 0;
+                                            int check2 = 0;
+                                            if (db.isNumber(id))
                                             {
-                                                if (notification.Id == int.Parse(id))
-                                                {
-                                                    break;
-                                                   // Thread.Sleep(2000);
-                                                }
-                                                ++count;
-                                            }
-                                            foreach (var subcv in employee.SubscribedEmployeeCv)
-                                            {
-                                                if (count == count1)
-                                                {
-                                                    Console.Clear();
-                                                    Console.ForegroundColor = ConsoleColor.DarkGreen;
-                                                    Console.WriteLine(subcv); Console.ForegroundColor = ConsoleColor.White;
-                                                    int choise10 = ConsoleHelper.MultipleChoice(36, 9, false, 2, "Accept", "Reject");
-                                                    if (choise10 ==0)
-                                                    {
-                                                        
-                                                        Console.WriteLine("You accepted this cv succesfully");
-                                                        Thread.Sleep(1500);
-                                                        goto Notification;
-                                                    }
-                                                    else if (choise10 == 2)
-                                                    {
 
+                                                foreach (var notification in employee.Notifications)
+                                                {
+                                                    if (notification.Id == int.Parse(id))
+                                                    {
+                                                        ++check2;
+                                                        break;
                                                     }
+                                                    ++count;
                                                 }
-                                                ++count1;
+                                                if (check2 == 0)
+                                                {
+                                                    Console.ForegroundColor = ConsoleColor.DarkRed;
+                                                    Console.WriteLine("You havent notification this id"); Console.ForegroundColor = ConsoleColor.White;
+                                                    Thread.Sleep(1000);
+                                                    goto selectnotification;
+                                                }
+                                                foreach (var subcv in employee.SubscribedEmployeeCv)
+                                                {
+                                                    if (count == count1)
+                                                    {
+                                                        Console.Clear();
+                                                        Console.ForegroundColor = ConsoleColor.DarkGreen;
+                                                        Console.WriteLine(subcv); Console.ForegroundColor = ConsoleColor.White;
+                                                        int choise10 = ConsoleHelper.MultipleChoice(50, 1, false, 2, "Accept Cv", "Reject Cv");
+                                                        if (choise10 == 0)
+                                                        {
+                                                            Console.Clear();
+                                                            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                                                            Console.SetCursorPosition(36, 9);
+                                                            Console.WriteLine("-----You accepted this cv succesfully----"); Console.ForegroundColor = ConsoleColor.White;
+                                                            employee.Notifications.RemoveAt(count);
+                                                            employee.SubscribedEmployeeCv.RemoveAt(count);
+                                                            Thread.Sleep(1500);
+                                                            goto Notification;
+                                                        }
+                                                        else if (choise10 == 1)
+                                                        {
+                                                            Console.Clear();
+                                                            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                                                            Console.SetCursorPosition(36, 9);
+                                                            Console.WriteLine("-----You rejected this cv succesfully----"); Console.ForegroundColor = ConsoleColor.White;
+                                                            employee.Notifications.RemoveAt(count);
+                                                            employee.SubscribedEmployeeCv.RemoveAt(count);
+                                                            Thread.Sleep(1500);
+                                                            goto Notification;
+                                                        }
+                                                    }
+                                                    ++count1;
+                                                }
                                             }
-                                        }
-                                        else
+                                            else
+                                            {
+                                                Console.ForegroundColor = ConsoleColor.DarkRed;
+                                                Console.WriteLine("Incorrect Id"); Console.ForegroundColor = ConsoleColor.White;
+                                                Thread.Sleep(1000);
+                                                goto selectnotification;
+                                            }
+                                        }  
+                                        else if (choise11 == 1)
                                         {
-                                            //Id reqem olmuyan hissesi
+                                            goto employeeoptions;
                                         }
                                     }
                                 }
