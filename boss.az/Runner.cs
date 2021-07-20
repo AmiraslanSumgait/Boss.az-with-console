@@ -1334,7 +1334,7 @@ namespace boss.az
                                             {
                                             subscribecv:
                                                 Console.ForegroundColor = ConsoleColor.Cyan;
-                                                Console.Write("Enter which announcment you want subscribe(With id): ");
+                                                Console.Write("Enter which cv you want subscribe(With id): ");
                                                 string id = Console.ReadLine();
                                                 int check3 = 0;
                                                 if (db.isNumber(id))
@@ -1395,7 +1395,72 @@ namespace boss.az
                                         }
                                         else if (choise6 == 1)
                                         {
-                                            //All cvvvvvvsssss
+                                            Console.Clear();
+                                            foreach (var worker in db.Workers)
+                                            {
+                                                worker.PrintCvs();
+                                                Console.WriteLine("\n\n");
+                                            }
+                                        likecv:
+                                            Console.ForegroundColor = ConsoleColor.Yellow;
+                                            Console.WriteLine("Do you like any cv?(Y/N)");
+                                            string option = Console.ReadLine();
+                                            if (option == "Y" || option == "y")
+                                            {
+                                            subscribecv:
+                                                Console.ForegroundColor = ConsoleColor.Cyan;
+                                                Console.Write("Enter which cv you want subscribe(With id): ");
+                                                string id = Console.ReadLine();
+                                                int check3 = 0;
+                                                if (db.isNumber(id))
+                                                {
+                                                    foreach (var worker in db.Workers)
+                                                    {
+                                                        foreach (var cv in worker.Cvs)
+                                                        {
+                                                            if (cv.ThisId == int.Parse(id))
+                                                            {
+                                                                ++check3;
+                                                                Notification notification = new Notification { NotificationTime = DateTime.Now, Text = $"{employee.FullName} subscribed your cv" };
+                                                                worker.Notifications.Add(notification);
+                                                                Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                                                                Console.WriteLine("----You succesfully subscribed this cv and your announcment send----"); Console.ForegroundColor = ConsoleColor.White;
+                                                                foreach (var announcment in employee.Announcements)
+                                                                {
+                                                                    worker.JobOffers.Add(announcment);
+                                                                }
+                                                                Thread.Sleep(1500);
+                                                                goto likecv;
+                                                            }
+                                                        }
+                                                    }
+                                                    if (check3 == 0)
+                                                    {
+                                                        Console.ForegroundColor = ConsoleColor.Red;
+                                                        Console.WriteLine("No cv with this id"); Console.ForegroundColor = ConsoleColor.White;
+                                                        Thread.Sleep(1000);
+                                                        goto subscribecv;
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    Console.ForegroundColor = ConsoleColor.Red;
+                                                    Console.WriteLine("Incorrect Id"); Console.ForegroundColor = ConsoleColor.White;
+                                                    Thread.Sleep(1000);
+                                                    goto subscribecv;
+                                                }
+                                            }
+                                            else if (option == "N" || option == "n")
+                                            {
+                                                goto advancedsearch;
+                                            }
+                                            else
+                                            {
+                                                Console.ForegroundColor = ConsoleColor.DarkRed;
+                                                Console.WriteLine("Incorrect option"); Console.ForegroundColor = ConsoleColor.White;
+                                                Thread.Sleep(1000);
+                                                goto likecv;
+                                            }
 
                                         }
                                         else if (choise6 == 2)
@@ -1555,6 +1620,5 @@ namespace boss.az
                 }
             }
         }
-
     }
 }
