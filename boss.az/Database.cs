@@ -13,6 +13,7 @@ namespace boss.az
         public List<Employee> Employees { get; set; }
         public List<Category> Categories { get; set; }
         public static List<Announcement> FilitrAnnoucments { get; set; } = new List<Announcement>();    
+        public static List<CV> FilitrCvs { get; set; } = new List<CV>();    
         public bool IsValidEmail(string email)
         {
             // Return true if strIn is in valid e-mail format.

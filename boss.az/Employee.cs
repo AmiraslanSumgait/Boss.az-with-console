@@ -17,6 +17,7 @@ namespace boss.az
         public List<Notification> Notifications { get; set; } = new List<Notification>();
         public List<CV> SubscribedEmployeeCv { get; set; } = new List<CV>();
 
+
         public Employee(string name, string surname, int age,string email,string password):base(name,surname,age,email,password)
         {
            

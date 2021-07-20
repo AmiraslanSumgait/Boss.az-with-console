@@ -9,7 +9,8 @@ namespace boss.az
     class FilitrClass
     {
         public  static int FilitrCategoryId{ get; set; }
-        public static int FilitrMinimumSalary { get; set; } 
+        public static int FilitrMinimumSalary { get; set; }
+        public static int FilitrMinimumAge { get; set; }
         public  static string FilitrCity { get; set; }
     }
 }

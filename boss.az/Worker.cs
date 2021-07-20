@@ -14,6 +14,8 @@ namespace boss.az
     class Worker:Person,IWorker
     {
         public List<CV> Cvs { get; set; } = new List<CV>();
+        public List<Notification> Notifications { get; set; } = new List<Notification>();
+        public List<Announcement> JobOffers { get; set; } = new List<Announcement>();
         public Worker(string fullname, string username, int age,  string email, string password) : base(fullname, username, age,  email, password)
         {
 
