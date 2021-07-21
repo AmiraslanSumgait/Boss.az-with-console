@@ -14,6 +14,7 @@ namespace boss.az
 
         public static void Run()
         {
+            Checker checker = new Checker();
             Worker w1 = new Worker("Nebi Nebili", "Nebi18", 18, "nnabili035@gmail.com", "Azerbaycan123");
             Worker w2 = new Worker("Kamal Eliyev", "KamalQazax", 15, "kamaleliyev7@gmail.com", "Salam qaqa");
             Category category1 = new Category("Software developer", 1);
@@ -32,7 +33,6 @@ namespace boss.az
             Database.FilitrAnnoucments.Add(announcement3);
             Database.FilitrAnnoucments.Add(announcement2);
             Database.FilitrAnnoucments.Add(announcement1);
-
             CV cv1 = new CV(1, "Node.js + Java Senior backend engineer", "Nebi", 45, "Sumgait", new DateTime(2021, 10, 21, 23, 30, 00), new DateTime(2021, 11, 21, 23, 30, 00), "Java,Node.js", "More than 2 year");
             CV cv2 = new CV(2, "Product designer", "Akif", 20, "Ganja", new DateTime(2021, 8, 22, 22, 00, 10), new DateTime(2021, 9, 22, 23, 30, 00), "A high degree of technical knowledge balanced with creative ability and a hands-on approach.", "More than 1 year");
             CV cv3 = new CV(3, "Digital & Web Coordinator", "Kamal", 24, "Baku", new DateTime(2021, 12, 19, 19, 00, 00), new DateTime(2022, 01, 21, 23, 30, 00), "Able to deliver quality results under time constraints in a fast-paced environment.", "Minimum 2 year");
@@ -79,7 +79,7 @@ namespace boss.az
                         Console.ForegroundColor = ConsoleColor.Cyan;
                         Console.Write("Enter your Fullname: ");
                         string fullName = Console.ReadLine();
-                        if (db.isString(fullName)) { }
+                        if (checker.isString(fullName)) { }
                         else
                         {
                             Console.ForegroundColor = ConsoleColor.DarkRed;
@@ -91,7 +91,7 @@ namespace boss.az
                         Console.ForegroundColor = ConsoleColor.Cyan;
                         Console.Write("Enter your Username: ");
                         string userName = Console.ReadLine();
-                        if (db.isString(userName)) { }
+                        if (checker.isString(userName)) { }
                         else
                         {
                             Console.ForegroundColor = ConsoleColor.DarkRed;
@@ -104,7 +104,7 @@ namespace boss.az
                         Console.WriteLine("--Age must be more than 18--");
                         Console.Write("Enter your Age: ");
                         string age = Console.ReadLine();
-                        if (db.IsValidAge(age)) { }
+                        if (checker.IsValidAge(age)) { }
                         else
                         {
                             Console.ForegroundColor = ConsoleColor.DarkRed;
@@ -116,7 +116,7 @@ namespace boss.az
                         Console.ForegroundColor = ConsoleColor.Cyan;
                         Console.Write("Enter your email: ");
                         string email = Console.ReadLine();
-                        if (db.IsValidEmail(email)) { }
+                        if (checker.IsValidEmail(email)) { }
                         else
                         {
                             Console.ForegroundColor = ConsoleColor.DarkRed;
@@ -129,7 +129,7 @@ namespace boss.az
                         Console.WriteLine("--Warning!!Password length min 8 max 15.Password must be 1 uppercase letter, 1 lower case lettter and 1 decimal digt---");
                         Console.Write("Enter your password: ");
                         string password = Console.ReadLine();
-                        if (db.ValidatePassword(password)) { }
+                        if (checker.ValidatePassword(password)) { }
                         else
                         {
                             Console.ForegroundColor = ConsoleColor.DarkRed;
@@ -151,7 +151,7 @@ namespace boss.az
                     int check = 0;
                 email:
                     Console.ForegroundColor = ConsoleColor.Cyan;
-                    db.ClearCurrentConsoleLine();
+                    checker.ClearCurrentConsoleLine();
                     Console.Write("Enter your email:");
                     string email = Console.ReadLine();
                     foreach (var worker in db.Workers)
@@ -223,7 +223,7 @@ namespace boss.az
                                         Console.Write("Which cv you want delete(with id): ");
                                         string id;
                                         int check1 = 0;
-                                        if (db.isNumber(id = Console.ReadLine()))
+                                        if (checker.isNumber(id = Console.ReadLine()))
                                         {
                                             foreach (var cv in worker.Cvs)
                                             {
@@ -271,7 +271,7 @@ namespace boss.az
                                         Console.ForegroundColor = ConsoleColor.DarkCyan;
                                         Console.WriteLine("Which cv you want update (with id)");
                                         string id = Console.ReadLine();
-                                        if (db.isNumber(id))
+                                        if (checker.isNumber(id))
                                         {
                                             foreach (var cv in worker.Cvs)
                                             {
@@ -302,7 +302,7 @@ namespace boss.az
                                                     Console.ForegroundColor = ConsoleColor.DarkYellow;
                                                     Console.WriteLine("New Work Name: "); Console.ForegroundColor = ConsoleColor.White;
                                                     string workName = Console.ReadLine();
-                                                    if (db.isString(workName)) { }
+                                                    if (checker.isString(workName)) { }
                                                     else
                                                     {
                                                         Console.ForegroundColor = ConsoleColor.DarkRed;
@@ -319,7 +319,7 @@ namespace boss.az
                                                     Console.ForegroundColor = ConsoleColor.DarkYellow;
                                                     Console.WriteLine("New Worker Name: "); Console.ForegroundColor = ConsoleColor.White;
                                                     string workerName = Console.ReadLine();
-                                                    if (db.isString(workerName)) { }
+                                                    if (checker.isString(workerName)) { }
                                                     else
                                                     {
                                                         Console.ForegroundColor = ConsoleColor.DarkRed;
@@ -337,7 +337,7 @@ namespace boss.az
                                                     Console.WriteLine("---Age must be more than 18---");
                                                     Console.WriteLine("New Age: "); Console.ForegroundColor = ConsoleColor.White;
                                                     string age = Console.ReadLine();
-                                                    if (db.IsValidAge(age)) { }
+                                                    if (checker.IsValidAge(age)) { }
                                                     else
                                                     {
                                                         Console.ForegroundColor = ConsoleColor.DarkRed;
@@ -354,7 +354,7 @@ namespace boss.az
                                                     Console.ForegroundColor = ConsoleColor.DarkYellow;
                                                     Console.WriteLine("New City: "); Console.ForegroundColor = ConsoleColor.White;
                                                     string city = Console.ReadLine();
-                                                    if (db.isString(city)) { }
+                                                    if (checker.isString(city)) { }
                                                     else
                                                     {
                                                         Console.ForegroundColor = ConsoleColor.DarkRed;
@@ -556,7 +556,7 @@ namespace boss.az
                                                 Console.Write("Enter which announcment you want subscribe(With id): ");
                                                 string id = Console.ReadLine();
                                                 int check3 = 0;
-                                                if (db.isNumber(id))
+                                                if (checker.isNumber(id))
                                                 {
                                                     foreach (var announcment in Database.FilitrAnnoucments)
                                                     {
@@ -633,7 +633,7 @@ namespace boss.az
                                                 Console.Write("Enter which announcment you want subscribe(With id): ");
                                                 string id = Console.ReadLine();
                                                 int check3 = 0;
-                                                if (db.isNumber(id))
+                                                if (checker.isNumber(id))
                                                 {
                                                     foreach (var employee in db.Employees)
                                                     {
@@ -718,7 +718,7 @@ namespace boss.az
                                             int count = 0;
                                             int count1 = 0;
                                             int check2 = 0;
-                                            if (db.isNumber(id))
+                                            if (checker.isNumber(id))
                                             {
                                                 foreach (var notification in worker.Notifications)
                                                 {
@@ -818,7 +818,7 @@ namespace boss.az
                                     Console.ForegroundColor = ConsoleColor.White;
                                     int choise3 = ConsoleHelper.MultipleChoice(50, 5, false, 1, "Continue", "<-Back");
                                     if (choise3 == 1) { goto SecondPart; }
-                                    if (choise3 == 0) { db.ClearCurrentConsoleLine(); db.ClearLastLine(); Console.WriteLine(); continue; }
+                                    if (choise3 == 0) { checker.ClearCurrentConsoleLine(); checker.ClearLastLine(); Console.WriteLine(); continue; }
                                 }
                             }
                         }
@@ -857,7 +857,7 @@ namespace boss.az
                         Console.WriteLine("--Age must be more than 18--");
                         Console.Write("Enter your Age: ");
                         string age = Console.ReadLine();
-                        if (db.IsValidAge(age)) { }
+                        if (checker.IsValidAge(age)) { }
                         else
                         {
                             Console.ForegroundColor = ConsoleColor.DarkRed;
@@ -869,7 +869,7 @@ namespace boss.az
                         Console.ForegroundColor = ConsoleColor.Cyan;
                         Console.Write("Enter your email: ");
                         string email = Console.ReadLine();
-                        if (db.IsValidEmail(email)) { }
+                        if (checker.IsValidEmail(email)) { }
                         else
                         {
                             Console.ForegroundColor = ConsoleColor.DarkRed;
@@ -882,7 +882,7 @@ namespace boss.az
                         Console.WriteLine("--Warning!!Password length min 8 max 15.Password must be 1 uppercase letter, 1 lower case lettter and 1 decimal digt---");
                         Console.Write("Enter your password: ");
                         string password = Console.ReadLine();
-                        if (db.ValidatePassword(password)) { }
+                        if (checker.ValidatePassword(password)) { }
                         else
                         {
                             Console.ForegroundColor = ConsoleColor.DarkRed;
@@ -978,7 +978,7 @@ namespace boss.az
                                         string id;
                                         int check1 = 0;
                                         id = Console.ReadLine();
-                                        if (db.isNumber(id))
+                                        if (checker.isNumber(id))
                                         {
                                             foreach (var announcement in employee.Announcements)
                                             {
@@ -1027,7 +1027,7 @@ namespace boss.az
                                         Console.ForegroundColor = ConsoleColor.DarkCyan;
                                         Console.WriteLine("Which announcment you want update (with id)");
                                         string id = Console.ReadLine();
-                                        if (db.isNumber(id))
+                                        if (checker.isNumber(id))
                                         {
                                             foreach (var announcment in employee.Announcements)
                                             {
@@ -1057,7 +1057,7 @@ namespace boss.az
                                                     Console.ForegroundColor = ConsoleColor.DarkYellow;
                                                     Console.WriteLine("New Job Name: "); Console.ForegroundColor = ConsoleColor.White;
                                                     string subject = Console.ReadLine();
-                                                    if (db.isString(subject)) { }
+                                                    if (checker.isString(subject)) { }
                                                     else
                                                     {
                                                         Console.ForegroundColor = ConsoleColor.DarkRed;
@@ -1084,7 +1084,7 @@ namespace boss.az
                                                     Console.WriteLine("---Age must be more than 18---");
                                                     Console.WriteLine("New Age: "); Console.ForegroundColor = ConsoleColor.White;
                                                     string age = Console.ReadLine();
-                                                    if (db.IsValidAge(age)) { }
+                                                    if (checker.IsValidAge(age)) { }
                                                     else
                                                     {
                                                         Console.ForegroundColor = ConsoleColor.DarkRed;
@@ -1101,7 +1101,7 @@ namespace boss.az
                                                     Console.ForegroundColor = ConsoleColor.DarkYellow;
                                                     Console.WriteLine("New City: "); Console.ForegroundColor = ConsoleColor.White;
                                                     string city = Console.ReadLine();
-                                                    if (db.isString(city)) { }
+                                                    if (checker.isString(city)) { }
                                                     else
                                                     {
                                                         Console.ForegroundColor = ConsoleColor.DarkRed;
@@ -1118,7 +1118,7 @@ namespace boss.az
                                                     Console.ForegroundColor = ConsoleColor.DarkYellow;
                                                     Console.WriteLine("New Relevant Person: "); Console.ForegroundColor = ConsoleColor.White;
                                                     string relevantPerson = Console.ReadLine();
-                                                    if (db.isString(relevantPerson)) { }
+                                                    if (checker.isString(relevantPerson)) { }
                                                     else
                                                     {
                                                         Console.ForegroundColor = ConsoleColor.DarkRed;
@@ -1135,7 +1135,7 @@ namespace boss.az
                                                     Console.ForegroundColor = ConsoleColor.DarkYellow;
                                                     Console.WriteLine("New Email: "); Console.ForegroundColor = ConsoleColor.White;
                                                     string emaill = Console.ReadLine();
-                                                    if (db.IsValidEmail(emaill)) { }
+                                                    if (checker.IsValidEmail(emaill)) { }
                                                     else
                                                     {
                                                         Console.ForegroundColor = ConsoleColor.DarkRed;
@@ -1152,7 +1152,7 @@ namespace boss.az
                                                     Console.ForegroundColor = ConsoleColor.DarkYellow;
                                                     Console.WriteLine("New Phone Number: "); Console.ForegroundColor = ConsoleColor.White;
                                                     string phoneNumber = Console.ReadLine();
-                                                    if (db.isNumber(phoneNumber)) { }
+                                                    if (checker.isNumber(phoneNumber)) { }
                                                     else
                                                     {
                                                         Console.ForegroundColor = ConsoleColor.DarkRed;
@@ -1337,7 +1337,7 @@ namespace boss.az
                                                 Console.Write("Enter which cv you want subscribe(With id): ");
                                                 string id = Console.ReadLine();
                                                 int check3 = 0;
-                                                if (db.isNumber(id))
+                                                if (checker.isNumber(id))
                                                 {
                                                     foreach (var cv in Database.FilitrCvs)
                                                     {
@@ -1412,7 +1412,7 @@ namespace boss.az
                                                 Console.Write("Enter which cv you want subscribe(With id): ");
                                                 string id = Console.ReadLine();
                                                 int check3 = 0;
-                                                if (db.isNumber(id))
+                                                if (checker.isNumber(id))
                                                 {
                                                     foreach (var worker in db.Workers)
                                                     {
@@ -1499,7 +1499,7 @@ namespace boss.az
                                             int count = 0;
                                             int count1 = 0;
                                             int check2 = 0;
-                                            if (db.isNumber(id))
+                                            if (checker.isNumber(id))
                                             {
 
                                                 foreach (var notification in employee.Notifications)
@@ -1599,7 +1599,7 @@ namespace boss.az
                                     Console.ForegroundColor = ConsoleColor.White;
                                     int choise3 = ConsoleHelper.MultipleChoice(50, 5, false, 1, "Continue", "<-Back");
                                     if (choise3 == 1) { goto SecondPart; }
-                                    if (choise3 == 0) { db.ClearCurrentConsoleLine(); db.ClearLastLine(); Console.WriteLine(); continue; }
+                                    if (choise3 == 0) { checker.ClearCurrentConsoleLine(); checker.ClearLastLine(); Console.WriteLine(); continue; }
                                 }
                             }
                         }

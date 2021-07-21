@@ -8,16 +8,16 @@ using System.Threading.Tasks;
 namespace boss.az
 {
      class Helper
-    {
+      {
         public static CV CvObject(int categoryId)
         {
             Console.Clear();
-            Database db = new Database();
+            Checker checker = new Checker();
         Cvdisplay:
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.Write("Your name: ");
             string name = Console.ReadLine();
-            if (db.isString(name)) { }
+            if (checker.isString(name)) { }
             else
             {
                 Console.ForegroundColor = ConsoleColor.DarkRed;
@@ -29,7 +29,7 @@ namespace boss.az
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.Write("Your job: ");
             string workName = Console.ReadLine();
-            if (db.isString(workName)) { }
+            if (checker.isString(workName)) { }
             else
             {
                 Console.ForegroundColor = ConsoleColor.DarkRed;
@@ -43,7 +43,7 @@ namespace boss.az
             Console.WriteLine("--Age must be more than 18--");
             Console.Write("Enter your Age: ");
             string age = Console.ReadLine();
-            if (db.IsValidAge(age)) { }
+            if (checker.IsValidAge(age)) { }
             else
             {
                 Console.ForegroundColor = ConsoleColor.DarkRed;
@@ -55,7 +55,7 @@ namespace boss.az
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.Write("Your city: ");
             string city = Console.ReadLine();
-            if (db.isString(city)) { }
+            if (checker.isString(city)) { }
             else
             {
                 Console.ForegroundColor = ConsoleColor.DarkRed;
@@ -77,12 +77,12 @@ namespace boss.az
         public static Announcement AnnoucmentObject(int categoryId)
         {
             Console.Clear();
-            Database db = new Database();
+            Checker checker = new Checker();
         Cvdisplay:
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.Write("Subject: ");
             string subject = Console.ReadLine();
-            if (db.isString(subject)) { }
+            if (checker.isString(subject)) { }
             else
             {
                 Console.ForegroundColor = ConsoleColor.DarkRed;
@@ -94,7 +94,7 @@ namespace boss.az
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.Write("City: ");
             string city = Console.ReadLine();
-            if (db.isString(city)) { }
+            if (checker.isString(city)) { }
             else
             {
                 Console.ForegroundColor = ConsoleColor.DarkRed;
@@ -107,7 +107,7 @@ namespace boss.az
             Console.WriteLine("--Age must be more than 18--");
             Console.Write("Enter  Age: ");
             string age = Console.ReadLine();
-            if (db.IsValidAge(age)) { }
+            if (checker.IsValidAge(age)) { }
             else
             {
                 Console.ForegroundColor = ConsoleColor.DarkRed;
@@ -119,7 +119,7 @@ namespace boss.az
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.Write("Salary: ");
             string salary = Console.ReadLine();
-            if (db.isNumber(salary)) { }
+            if (checker.isNumber(salary)) { }
             else
             {
                 Console.ForegroundColor = ConsoleColor.DarkRed;
@@ -133,7 +133,7 @@ namespace boss.az
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.Write("Relevant person: ");
             string relevantPerson = Console.ReadLine();
-            if (db.isString(relevantPerson)) { }
+            if (checker.isString(relevantPerson)) { }
             else
             {
                 Console.ForegroundColor = ConsoleColor.DarkRed;
@@ -145,7 +145,7 @@ namespace boss.az
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.Write("Email: ");
             string email = Console.ReadLine();
-            if (db.IsValidEmail(email)) { }
+            if (checker.IsValidEmail(email)) { }
             else
             {
                 Console.ForegroundColor = ConsoleColor.DarkRed;
@@ -157,7 +157,7 @@ namespace boss.az
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.Write("Phone Number: ");
             string phoneNumber = Console.ReadLine();
-            if (db.isNumber(phoneNumber)) { }
+            if (checker.isNumber(phoneNumber)) { }
             else
             {
                 Console.ForegroundColor = ConsoleColor.DarkRed;
