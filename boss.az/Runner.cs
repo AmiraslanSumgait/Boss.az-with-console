@@ -4,28 +4,18 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
-//using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-
-
 namespace boss.az
 {
     class Runner
     {
-
         public static void Run()
         {
             Checker checker = new Checker();
             Worker w1 = new Worker("Nebi Nebili", "Nebi18", 18, "nnabili035@gmail.com", "Azerbaycan123");
             Worker w2 = new Worker("Kamal Eliyev", "KamalQazax", 15, "kamaleliyev7@gmail.com", "Salam qaqa");
-           // Category category1 = new Category("Software developer", 1);
-            //Category category2 = new Category("Web/Graphic design", 2);
-           // Category category3 = new Category("IT / Telecommunications", 3);
-           // Category category4 = new Category("Economy", 4);
-           // Category category5 = new Category("Marketing / Media / PR", 5);
-           // Category category6 = new Category("Human Resources / Staff Management ", 6);
             Announcement announcement1 = new Announcement(1, "React developer", "Sumgait", "18-25", new DateTime(2020, 09, 21), new DateTime(2020, 10, 21), 900, "1 to 3 years", "Amiraslan", "emiraslaneliyev45@gmail.com", "994557134655");
             Announcement announcement2 = new Announcement(1, "Php developer", "Baku", "20-40", new DateTime(2021, 02, 10), new DateTime(2020, 03, 10), 1500, "More than 1 year", "Kenan", "Kenan23@gmail.com", "994558557498");
             Announcement announcement3 = new Announcement(2, "UI/UX Designer", "Ganja", "25-40", new DateTime(2019, 03, 5), new DateTime(2019, 04, 10), 2100, "More than 3 year", "Nebi", "nnabili@gmail.com", "994557135755");
@@ -49,10 +39,6 @@ namespace boss.az
             Database.FilitrCvs.Add(cv5);
             Database.FilitrCvs.Add(cv6);
             w1.AddCv(cv1);
-            //w1.AddCv(cv2);
-            //w1.AddCv(cv3);
-            //w2.AddCv(cv4);
-            //w2.AddCv(cv5);
             w2.AddCv(cv6);
             Employee emp1 = new Employee("Kenan Idayatov", "Akula", 18, "kenannidayatov@gmail.com", "Progress32");
             Employee emp2 = new Employee("Hormet Hemidov", "idayatov.k", 19, "hhormethemidov@gmail.com", "29092001");
@@ -62,12 +48,6 @@ namespace boss.az
             emp1.AddAnnoucment(announcement4);
             emp2.AddAnnoucment(announcement5);
             Database db = new Database();
-            //Database db = new Database
-            //{
-            //    //Workers = new List<Worker> { w1, w2 },
-            //    //Employees = new List<Employee> { emp1, emp2 },
-            //    //Categories = new List<Category> { category1, category2, category3, category4, category5, category6 }
-            //};
             db.Workers = new List<Worker>();
             db.Employees = new List<Employee>();
             db.Categories = new List<Category>();
@@ -196,26 +176,32 @@ namespace boss.az
                                         {
                                             case 0:
                                                 worker.AddCv(Helper.CvObject(1));
+                                                JsonFormat.WriteToJsonFile(db.Workers, "Workers.json");
                                                 goto workeroptions;
                                                 break;
                                             case 1:
                                                 worker.AddCv(Helper.CvObject(2));
+                                                JsonFormat.WriteToJsonFile(db.Workers, "Workers.json");
                                                 goto workeroptions;
                                                 break;
                                             case 2:
                                                 worker.AddCv(Helper.CvObject(3));
+                                                JsonFormat.WriteToJsonFile(db.Workers, "Workers.json");
                                                 goto workeroptions;
                                                 break;
                                             case 3:
                                                 worker.AddCv(Helper.CvObject(4));
+                                                JsonFormat.WriteToJsonFile(db.Workers, "Workers.json");
                                                 goto workeroptions;
                                                 break;
                                             case 4:
                                                 worker.AddCv(Helper.CvObject(5));
+                                                JsonFormat.WriteToJsonFile(db.Workers, "Workers.json");
                                                 goto workeroptions;
                                                 break;
                                             case 5:
                                                 worker.AddCv(Helper.CvObject(6));
+                                                JsonFormat.WriteToJsonFile(db.Workers, "Workers.json");
                                                 goto workeroptions;
                                                 break;
                                             case 6:
@@ -258,6 +244,7 @@ namespace boss.az
                                             }
                                             var item = worker.Cvs.SingleOrDefault(x => x.ThisId == int.Parse(id));
                                             worker.Cvs.Remove(item);
+                                            JsonFormat.WriteToJsonFile(db.Workers, "Workers.json");
                                             Console.ForegroundColor = ConsoleColor.DarkMagenta;
                                             Console.WriteLine("Your cv deleted succesfully"); Console.ForegroundColor = ConsoleColor.White;
                                             Thread.Sleep(1500);
@@ -328,6 +315,7 @@ namespace boss.az
                                                         goto case 0;
                                                     }
                                                     cvUpdate.WorkName = workName;
+                                                    JsonFormat.WriteToJsonFile(db.Workers, "Workers.json");
                                                     Console.ForegroundColor = ConsoleColor.DarkMagenta;
                                                     Console.WriteLine("Your Work name updated sucesfully"); Console.ForegroundColor = ConsoleColor.White;
                                                     break;
@@ -345,6 +333,7 @@ namespace boss.az
                                                         goto case 1;
                                                     }
                                                     cvUpdate.Name = workerName;
+                                                    JsonFormat.WriteToJsonFile(db.Workers, "Workers.json");
                                                     Console.ForegroundColor = ConsoleColor.DarkMagenta;
                                                     Console.WriteLine("Your Worker name updated sucesfully"); Console.ForegroundColor = ConsoleColor.White;
                                                     break;
@@ -363,6 +352,7 @@ namespace boss.az
                                                         goto case 2;
                                                     }
                                                     cvUpdate.Age = int.Parse(age);
+                                                    JsonFormat.WriteToJsonFile(db.Workers, "Workers.json");
                                                     Console.ForegroundColor = ConsoleColor.DarkMagenta;
                                                     Console.WriteLine("Your Age updated sucesfully"); Console.ForegroundColor = ConsoleColor.White;
                                                     break;
@@ -380,6 +370,7 @@ namespace boss.az
                                                         goto case 3;
                                                     }
                                                     cvUpdate.City = city;
+                                                    JsonFormat.WriteToJsonFile(db.Workers, "Workers.json");
                                                     Console.ForegroundColor = ConsoleColor.DarkMagenta;
                                                     Console.WriteLine("Your City updated sucesfully"); Console.ForegroundColor = ConsoleColor.White;
                                                     break;
@@ -389,6 +380,7 @@ namespace boss.az
                                                     Console.WriteLine("New Skills: "); Console.ForegroundColor = ConsoleColor.White;
                                                     string skills = Console.ReadLine();
                                                     cvUpdate.Skills = skills;
+                                                    JsonFormat.WriteToJsonFile(db.Workers, "Workers.json");
                                                     Console.ForegroundColor = ConsoleColor.DarkMagenta;
                                                     Console.WriteLine("Your Skills updated sucesfully"); Console.ForegroundColor = ConsoleColor.White;
                                                     break;
@@ -398,6 +390,7 @@ namespace boss.az
                                                     Console.WriteLine("New experience: "); Console.ForegroundColor = ConsoleColor.White;
                                                     string experience = Console.ReadLine();
                                                     cvUpdate.Experience = experience;
+                                                    JsonFormat.WriteToJsonFile(db.Workers, "Workers.json");
                                                     Console.ForegroundColor = ConsoleColor.DarkMagenta;
                                                     Console.WriteLine("Your Expierence updated sucesfully"); Console.ForegroundColor = ConsoleColor.White;
                                                     break;
@@ -587,12 +580,15 @@ namespace boss.az
                                                                     {
                                                                         Notification notification = new Notification { NotificationTime = DateTime.Now, Text = $"{worker.FullName} subscribed your {annoucment.Subject} announcment" };
                                                                         employee.Notifications.Add(notification);
+                                                                        JsonFormat.WriteToJsonFile(db.Employees, "Employees.json");
                                                                         Console.ForegroundColor = ConsoleColor.DarkMagenta;
                                                                         Console.WriteLine("----You succesfully subscribed this announcment and your cv send----"); Console.ForegroundColor = ConsoleColor.White;
                                                                         foreach (var cv in worker.Cvs)
                                                                         {
                                                                             employee.SubscribedEmployeeCv.Add(cv);
+
                                                                         }
+                                                                        JsonFormat.WriteToJsonFile(db.Employees, "Employees.json");
                                                                         Thread.Sleep(1500);
                                                                         goto likeannouncment;
                                                                     }
@@ -661,12 +657,14 @@ namespace boss.az
                                                                 ++check3;
                                                                 Notification notification = new Notification { NotificationTime = DateTime.Now, Text = $"{worker.FullName} subscribed your {announcement.Subject} announcment" };
                                                                 employee.Notifications.Add(notification);
+                                                                JsonFormat.WriteToJsonFile(db.Employees, "Employees.json");
                                                                 Console.ForegroundColor = ConsoleColor.DarkMagenta;
                                                                 Console.WriteLine("----You succesfully subscribed this announcment and your cv send----"); Console.ForegroundColor = ConsoleColor.White;
                                                                 foreach (var cv in worker.Cvs)
                                                                 {
                                                                     employee.SubscribedEmployeeCv.Add(cv);
                                                                 }
+                                                                JsonFormat.WriteToJsonFile(db.Employees, "Employees.json");
                                                                 Thread.Sleep(1500);
                                                                 goto likeannouncment;
                                                             }
@@ -769,6 +767,7 @@ namespace boss.az
                                                             Console.WriteLine("-----You accepted this job offer succesfully----"); Console.ForegroundColor = ConsoleColor.White;
                                                             worker.Notifications.RemoveAt(count);
                                                             worker.JobOffers.RemoveAt(count);
+                                                            JsonFormat.WriteToJsonFile(db.Workers, "Workers.json");
                                                             Thread.Sleep(1500);
                                                             goto Notification;
                                                         }
@@ -780,6 +779,7 @@ namespace boss.az
                                                             Console.WriteLine("-----You rejected this job offer succesfully----"); Console.ForegroundColor = ConsoleColor.White;
                                                             worker.Notifications.RemoveAt(count);
                                                             worker.JobOffers.RemoveAt(count);
+                                                            JsonFormat.WriteToJsonFile(db.Workers, "Workers.json");
                                                             Thread.Sleep(1500);
                                                             goto Notification;
                                                         }
@@ -804,6 +804,7 @@ namespace boss.az
                                             Console.WriteLine("-----You accepted all  job offers succesfully----"); Console.ForegroundColor = ConsoleColor.White;
                                             worker.Notifications.RemoveRange(0, worker.Notifications.Count);
                                             worker.JobOffers.RemoveRange(0, worker.JobOffers.Count);
+                                            JsonFormat.WriteToJsonFile(db.Workers, "Workers.json");
                                             Thread.Sleep(1500);
                                             goto Notification;
                                         }
@@ -815,6 +816,7 @@ namespace boss.az
                                             Console.WriteLine("-----You rejected all  job offers succesfully----"); Console.ForegroundColor = ConsoleColor.White;
                                             worker.Notifications.RemoveRange(0, worker.Notifications.Count);
                                             worker.JobOffers.RemoveRange(0, worker.JobOffers.Count);
+                                            JsonFormat.WriteToJsonFile(db.Workers, "Workers.json");
                                             Thread.Sleep(1500);
                                             goto Notification;
                                         }
@@ -968,33 +970,38 @@ namespace boss.az
                                         {
                                             case 0:
                                                 employee.AddAnnoucment(Helper.AnnoucmentObject(1));
+                                                JsonFormat.WriteToJsonFile(db.Employees, "Employees.json");
                                                 goto employeeoptions;
                                                 break;
                                             case 1:
                                                 employee.AddAnnoucment(Helper.AnnoucmentObject(2));
+                                                JsonFormat.WriteToJsonFile(db.Employees, "Employees.json");
                                                 goto employeeoptions;
                                                 break;
                                             case 2:
                                                 employee.AddAnnoucment(Helper.AnnoucmentObject(3));
+                                                JsonFormat.WriteToJsonFile(db.Employees, "Employees.json");
                                                 goto employeeoptions;
                                                 break;
                                             case 3:
                                                 employee.AddAnnoucment(Helper.AnnoucmentObject(4));
+                                                JsonFormat.WriteToJsonFile(db.Employees, "Employees.json");
                                                 goto employeeoptions;
                                                 break;
                                             case 4:
                                                 employee.AddAnnoucment(Helper.AnnoucmentObject(5));
+                                                JsonFormat.WriteToJsonFile(db.Employees, "Employees.json");
                                                 goto employeeoptions;
                                                 break;
                                             case 5:
                                                 employee.AddAnnoucment(Helper.AnnoucmentObject(6));
+                                                JsonFormat.WriteToJsonFile(db.Employees, "Employees.json");
                                                 goto employeeoptions;
                                                 break;
                                             case 6:
                                                 goto employeeoptions;
                                                 break;
                                         }
-
                                     }
                                     else if (choise4 == 1)
                                     {
@@ -1033,6 +1040,7 @@ namespace boss.az
                                             }
                                             var item = employee.Announcements.SingleOrDefault(x => x.ThisId == int.Parse(id));
                                             employee.Announcements.Remove(item);
+                                            JsonFormat.WriteToJsonFile(db.Employees, "Employees.json");
                                             Console.ForegroundColor = ConsoleColor.DarkMagenta;
                                             Console.WriteLine("Your announcment deleted succesfully"); Console.ForegroundColor = ConsoleColor.White;
                                             Thread.Sleep(1500);
@@ -1103,6 +1111,7 @@ namespace boss.az
                                                         goto case 0;
                                                     }
                                                     annoucmentUpdate.Subject = subject;
+                                                    JsonFormat.WriteToJsonFile(db.Employees, "Employees.json");
                                                     Console.ForegroundColor = ConsoleColor.DarkMagenta;
                                                     Console.WriteLine("Work name updated sucesfully"); Console.ForegroundColor = ConsoleColor.White;
                                                     break;
@@ -1112,6 +1121,7 @@ namespace boss.az
                                                     Console.WriteLine("New Experience: "); Console.ForegroundColor = ConsoleColor.White;
                                                     string workExperience = Console.ReadLine();
                                                     annoucmentUpdate.WorkExperience = workExperience;
+                                                    JsonFormat.WriteToJsonFile(db.Employees, "Employees.json");
                                                     Console.ForegroundColor = ConsoleColor.DarkMagenta;
                                                     Console.WriteLine("Work Experience updated sucesfully"); Console.ForegroundColor = ConsoleColor.White;
                                                     break;
@@ -1130,6 +1140,7 @@ namespace boss.az
                                                         goto case 2;
                                                     }
                                                     annoucmentUpdate.Age = age;
+                                                    JsonFormat.WriteToJsonFile(db.Employees, "Employees.json");
                                                     Console.ForegroundColor = ConsoleColor.DarkMagenta;
                                                     Console.WriteLine("Your Age updated sucesfully"); Console.ForegroundColor = ConsoleColor.White;
                                                     break;
@@ -1147,6 +1158,7 @@ namespace boss.az
                                                         goto case 3;
                                                     }
                                                     annoucmentUpdate.City = city;
+                                                    JsonFormat.WriteToJsonFile(db.Employees, "Employees.json");
                                                     Console.ForegroundColor = ConsoleColor.DarkMagenta;
                                                     Console.WriteLine("City updated sucesfully"); Console.ForegroundColor = ConsoleColor.White;
                                                     break;
@@ -1164,6 +1176,7 @@ namespace boss.az
                                                         goto case 4;
                                                     }
                                                     annoucmentUpdate.RelevantPerson = relevantPerson;
+                                                    JsonFormat.WriteToJsonFile(db.Employees, "Employees.json");
                                                     Console.ForegroundColor = ConsoleColor.DarkMagenta;
                                                     Console.WriteLine("Relevant Person updated sucesfully"); Console.ForegroundColor = ConsoleColor.White;
                                                     break;
@@ -1181,6 +1194,7 @@ namespace boss.az
                                                         goto case 5;
                                                     }
                                                     annoucmentUpdate.Email = emaill;
+                                                    JsonFormat.WriteToJsonFile(db.Employees, "Employees.json");
                                                     Console.ForegroundColor = ConsoleColor.DarkMagenta;
                                                     Console.WriteLine("Relevant Person updated sucesfully"); Console.ForegroundColor = ConsoleColor.White;
                                                     break;
@@ -1198,6 +1212,7 @@ namespace boss.az
                                                         goto case 6;
                                                     }
                                                     annoucmentUpdate.PhoneNumber = phoneNumber;
+                                                    JsonFormat.WriteToJsonFile(db.Employees, "Employees.json");
                                                     Console.ForegroundColor = ConsoleColor.DarkMagenta;
                                                     Console.WriteLine("Phone Number updated sucesfully"); Console.ForegroundColor = ConsoleColor.White;
                                                     break;
@@ -1394,6 +1409,7 @@ namespace boss.az
                                                                         {
                                                                             worker.JobOffers.Add(annoucment);
                                                                         }
+                                                                        JsonFormat.WriteToJsonFile(db.Workers, "Workers.json");
                                                                         Thread.Sleep(1500);
                                                                         goto likecv;
                                                                     }
@@ -1466,6 +1482,7 @@ namespace boss.az
                                                                 {
                                                                     worker.JobOffers.Add(announcment);
                                                                 }
+                                                                JsonFormat.WriteToJsonFile(db.Workers, "Workers.json");
                                                                 Thread.Sleep(1500);
                                                                 goto likecv;
                                                             }
@@ -1498,7 +1515,6 @@ namespace boss.az
                                                 Thread.Sleep(1000);
                                                 goto likecv;
                                             }
-
                                         }
                                         else if (choise6 == 2)
                                         {
@@ -1571,6 +1587,7 @@ namespace boss.az
                                                             Console.WriteLine("-----You accepted this cv succesfully----"); Console.ForegroundColor = ConsoleColor.White;
                                                             employee.Notifications.RemoveAt(count);
                                                             employee.SubscribedEmployeeCv.RemoveAt(count);
+                                                            JsonFormat.WriteToJsonFile(db.Employees, "Employees.json");
                                                             Thread.Sleep(1500);
                                                             goto Notification;
                                                         }
@@ -1582,6 +1599,7 @@ namespace boss.az
                                                             Console.WriteLine("-----You rejected this cv succesfully----"); Console.ForegroundColor = ConsoleColor.White;
                                                             employee.Notifications.RemoveAt(count);
                                                             employee.SubscribedEmployeeCv.RemoveAt(count);
+                                                            JsonFormat.WriteToJsonFile(db.Employees, "Employees.json");
                                                             Thread.Sleep(1500);
                                                             goto Notification;
                                                         }
@@ -1605,6 +1623,7 @@ namespace boss.az
                                             Console.WriteLine("-----You accepted all  notification succesfully----"); Console.ForegroundColor = ConsoleColor.White;
                                             employee.Notifications.RemoveRange(0, employee.Notifications.Count);
                                             employee.SubscribedEmployeeCv.RemoveRange(0, employee.SubscribedEmployeeCv.Count);
+                                            JsonFormat.WriteToJsonFile(db.Employees, "Employees.json");
                                             Thread.Sleep(1500);
                                             goto Notification;
                                         }
@@ -1616,6 +1635,7 @@ namespace boss.az
                                             Console.WriteLine("-----You rejected all  notification succesfully----"); Console.ForegroundColor = ConsoleColor.White;
                                             employee.Notifications.RemoveRange(0, employee.Notifications.Count);
                                             employee.SubscribedEmployeeCv.RemoveRange(0, employee.SubscribedEmployeeCv.Count);
+                                            JsonFormat.WriteToJsonFile(db.Employees, "Employees.json");
                                             Thread.Sleep(1500);
                                             goto Notification;
                                         }
