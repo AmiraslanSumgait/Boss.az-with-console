@@ -13,7 +13,15 @@ namespace boss.az
 
         static void Main(string[] args)
         {
-            Runner.Run();
+            try
+            {
+                Runner.Run();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+           
         }
     }
 }
