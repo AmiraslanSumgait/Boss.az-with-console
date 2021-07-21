@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace boss.az
@@ -17,7 +18,7 @@ namespace boss.az
         public List<Notification> Notifications { get; set; } = new List<Notification>();
         public List<CV> SubscribedEmployeeCv { get; set; } = new List<CV>();
 
-
+        [JsonConstructor]
         public Employee(string name, string surname, int age,string email,string password):base(name,surname,age,email,password)
         {
            

@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
+//using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 
 namespace boss.az
@@ -17,12 +20,12 @@ namespace boss.az
             Checker checker = new Checker();
             Worker w1 = new Worker("Nebi Nebili", "Nebi18", 18, "nnabili035@gmail.com", "Azerbaycan123");
             Worker w2 = new Worker("Kamal Eliyev", "KamalQazax", 15, "kamaleliyev7@gmail.com", "Salam qaqa");
-            Category category1 = new Category("Software developer", 1);
-            Category category2 = new Category("Web/Graphic design", 2);
-            Category category3 = new Category("IT / Telecommunications", 3);
-            Category category4 = new Category("Economy", 4);
-            Category category5 = new Category("Marketing / Media / PR", 5);
-            Category category6 = new Category("Human Resources / Staff Management ", 6);
+           // Category category1 = new Category("Software developer", 1);
+            //Category category2 = new Category("Web/Graphic design", 2);
+           // Category category3 = new Category("IT / Telecommunications", 3);
+           // Category category4 = new Category("Economy", 4);
+           // Category category5 = new Category("Marketing / Media / PR", 5);
+           // Category category6 = new Category("Human Resources / Staff Management ", 6);
             Announcement announcement1 = new Announcement(1, "React developer", "Sumgait", "18-25", new DateTime(2020, 09, 21), new DateTime(2020, 10, 21), 900, "1 to 3 years", "Amiraslan", "emiraslaneliyev45@gmail.com", "994557134655");
             Announcement announcement2 = new Announcement(1, "Php developer", "Baku", "20-40", new DateTime(2021, 02, 10), new DateTime(2020, 03, 10), 1500, "More than 1 year", "Kenan", "Kenan23@gmail.com", "994558557498");
             Announcement announcement3 = new Announcement(2, "UI/UX Designer", "Ganja", "25-40", new DateTime(2019, 03, 5), new DateTime(2019, 04, 10), 2100, "More than 3 year", "Nebi", "nnabili@gmail.com", "994557135755");
@@ -58,12 +61,25 @@ namespace boss.az
             emp1.AddAnnoucment(announcement3);
             emp1.AddAnnoucment(announcement4);
             emp2.AddAnnoucment(announcement5);
-            Database db = new Database
-            {
-                Workers = new List<Worker> { w1, w2 },
-                Employees = new List<Employee> { emp1, emp2 },
-                Categories = new List<Category> { category1, category2, category3, category4, category5, category6 }
-            };
+            Database db = new Database();
+            //Database db = new Database
+            //{
+            //    //Workers = new List<Worker> { w1, w2 },
+            //    //Employees = new List<Employee> { emp1, emp2 },
+            //    //Categories = new List<Category> { category1, category2, category3, category4, category5, category6 }
+            //};
+            db.Workers = new List<Worker>();
+            db.Employees = new List<Employee>();
+            db.Categories = new List<Category>();
+            var workersText = File.ReadAllText("Workers.json");
+            db.Workers = JsonConvert.DeserializeObject<List<Worker>>(workersText);
+            var categoriesText = File.ReadAllText("Categories.json");
+            db.Categories = JsonConvert.DeserializeObject<List<Category>> (categoriesText);
+            var employeesText = File.ReadAllText("Employees.json");
+            db.Employees = JsonConvert.DeserializeObject<List<Employee>>(employeesText);
+            // JsonFormat.WriteToJsonFile(db.Workers, "Workers.json");
+            // JsonFormat.WriteToJsonFile(db.Employees, "Employees.json");
+             // JsonFormat.WriteToJsonFile(db.Categories, "Categories.json");
         FirstPart:
             int choise1 = ConsoleHelper.MultipleChoice(44, 9, true, 1, "Worker", "Employee");
             if (choise1 == 0)
@@ -139,6 +155,7 @@ namespace boss.az
                         }
                         Worker worker = new Worker(fullName, userName, int.Parse(age), email, password);
                         db.Workers.Add(worker);
+                        JsonFormat.WriteToJsonFile(db.Workers, "Workers.json");
                         Console.ForegroundColor = ConsoleColor.DarkBlue;
                         Console.WriteLine("---You succesfully signed up---"); Console.ForegroundColor = ConsoleColor.White;
                         Thread.Sleep(1500);
@@ -847,11 +864,30 @@ namespace boss.az
                     while (true)
                     {
                         Console.Clear();
+                        fullName:
                         Console.ForegroundColor = ConsoleColor.Cyan;
                         Console.Write("Enter your Fullname: ");
                         string fullName = Console.ReadLine();
+                        if (checker.isString(fullName)) { }
+                        else
+                        {
+                            Console.ForegroundColor = ConsoleColor.DarkRed;
+                            Console.Write("Incorrect fullname try again!!\n");
+                            Console.ForegroundColor = ConsoleColor.White;
+                            goto fullName;
+                        }
+                        username:
+                        Console.ForegroundColor = ConsoleColor.Cyan;
                         Console.Write("Enter your Username: ");
                         string userName = Console.ReadLine();
+                        if (checker.isString(userName)) { }
+                        else
+                        {
+                            Console.ForegroundColor = ConsoleColor.DarkRed;
+                            Console.Write("Incorrect username try again!!\n");
+                            Console.ForegroundColor = ConsoleColor.White;
+                            goto username;
+                        }
                     Age:
                         Console.ForegroundColor = ConsoleColor.Cyan;
                         Console.WriteLine("--Age must be more than 18--");
@@ -892,6 +928,7 @@ namespace boss.az
                         }
                         Employee employee = new Employee(fullName, userName, int.Parse(age), email, password);
                         db.Employees.Add(employee);
+                        JsonFormat.WriteToJsonFile(db.Employees, "Employees.json");
                         Console.ForegroundColor = ConsoleColor.DarkBlue;
                         Console.WriteLine("---You succesfully signed up---"); Console.ForegroundColor = ConsoleColor.White;
                         Thread.Sleep(1500);

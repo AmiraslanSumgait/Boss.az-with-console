@@ -18,7 +18,7 @@ namespace boss.az
         }
         public bool isString(string str)
         {
-            return Regex.IsMatch(str, "^[A-Z][a-zA-Z]*$");
+            return Regex.IsMatch(str, "[A-Z][a-zA-Z]+");
         }
         public bool ValidatePassword(string password)
         {
